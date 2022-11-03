@@ -3,7 +3,7 @@ const bookRouter = require("./bookRouter");
 
 const apiRouter = express.Router();
 
-apiRouter.use("/books", bookRouter);
+apiRouter.use("/games", gamesRouter);
 
 apiRouter.get("/", (req, res, next) => {
   res.send("api router working");

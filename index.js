@@ -1,4 +1,4 @@
-// GET /api/books
+// GET /api/games
 
 const express = require("express");
 const apiRouter = require("./api");

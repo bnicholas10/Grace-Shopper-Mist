@@ -1,14 +1,14 @@
 const client = require(".");
 
-const fetchBooks = async () => {
+const fetchGames = async () => {
   const response = await client.query(`
-    SELECT * FROM books
+    SELECT * FROM games;
     `);
   return response.rows;
 };
 
 module.exports = {
-  fetchBooks,
+  fetchGames,
 };
 
 // comment from bernie to see if it works
