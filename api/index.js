@@ -1,5 +1,5 @@
 const express = require("express");
-const bookRouter = require("./bookRouter");
+const bookRouter = require("./gamesRouter");
 
 const apiRouter = express.Router();
 

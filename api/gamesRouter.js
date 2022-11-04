@@ -8,4 +8,13 @@ gamesRouter.get("/", async (req, res, next) => {
   res.send({ success: true, games });
 });
 
+// GET all games
+gamesRouter.get("/", async (req, res, next) => {
+  try {
+    const games = await getAllGames();
+    res.send(games);
+  } catch (error) {
+    next(error);
+  }
+});
 module.exports = gamesRouter;
