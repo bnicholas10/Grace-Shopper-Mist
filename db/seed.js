@@ -42,23 +42,13 @@ async function createTables() {
         id SERIAL PRIMARY KEY,
         "userId" INTEGER REFERENCES users(id),
         "gameId" INTEGER REFERENCES games(id),
-        count INTEGER NOT NULL,
+        quantity INTEGER NOT NULL,
       );
 
     `);
     console.log("Finished building tables...");
   } catch (error) {
     console.log("Erorr while creating tables...");
-    throw error;
-  }
-}
-
-async function rebuildDB() {
-  try {
-    await dropTables();
-    await createTables();
-  } catch (error) {
-    console.log("Error during rebuildDB...");
     throw error;
   }
 }
@@ -449,7 +439,17 @@ async function createInitialGames() {
   }
 }
 
-seedDB();
+async function rebuildDB() {
+  try {
+    await dropTables();
+    await createTables();
+    await createInitialGames();
+  } catch (error) {
+    console.log("Error during rebuildDB...");
+    throw error;
+  }
+}
+
 module.exports = {
   rebuildDB,
   dropTables,
