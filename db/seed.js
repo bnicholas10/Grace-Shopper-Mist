@@ -45,6 +45,13 @@ async function createTables() {
         quantity INTEGER NOT NULL,
       );
 
+      CREATE TABLE reviews(
+        id SERIAL PRIMARY KEY,
+        "userId" INTEGER REFERENCES users(id),
+        "gameId" INTEGER REFERENCES games(id),
+        message VARCHAR(1000)
+      );
+
     `);
     console.log("Finished building tables...");
   } catch (error) {
