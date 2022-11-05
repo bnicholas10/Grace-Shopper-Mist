@@ -7,7 +7,7 @@ const {
   getReviewsByProduct,
   deleteReview,
 } = require("../db");
-const { requireUser } = require("./middleware");
+const { requireUser } = require("./utilities.js");
 
 // POST review
 reviewsRouter.post("/", requireUser, async (req, res, next) => {
