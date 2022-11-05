@@ -1,6 +1,6 @@
 const express = require("express");
 const publisherRouter = express.Router();
-const { getAllTags, getPostsByTagName } = require("../db");
+const { getAllPublishers, getGamesByPublisherName } = require("../db");
 const morgan = require("morgan");
 
 publisherRouter.use((req, res, next) => {
