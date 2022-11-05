@@ -68,4 +68,8 @@ const clearCart = async () => {};
 
 modules.export = {
   getCartByUserId,
+  addToCart,
+  removeFromCart,
+  updateCart,
+  clearCart,
 };
