@@ -19,7 +19,7 @@ const jwt = require("jsonwebtoken");
 const { JWT_SECRET } = process.env;
 
 // POST /api/users/login
-userRouter.post("/login", async (req, res, next) => {
+usersRouter.post("/login", async (req, res, next) => {
   const { username, password } = req.body;
 
   if (!username || !password) {
@@ -50,7 +50,7 @@ userRouter.post("/login", async (req, res, next) => {
 });
 
 // PATCH /api/users/me
-userRouter.patch("/me", requireUser, async (req, res, next) => {
+usersRouter.patch("/me", requireUser, async (req, res, next) => {
   try {
     if (!req.body.email) {
       next({
@@ -70,7 +70,7 @@ userRouter.patch("/me", requireUser, async (req, res, next) => {
 });
 
 // POST /api/users/register
-userRouter.post("/register", async (req, res, next) => {
+usersRouter.post("/register", async (req, res, next) => {
   try {
     const { username, email, password } = req.body;
     const queriedUser = await getUserByUsername(username);
@@ -113,7 +113,7 @@ userRouter.post("/register", async (req, res, next) => {
 });
 
 // GET /api/users/me
-userRouter.get("/me", async (req, res, next) => {
+usersRouter.get("/me", async (req, res, next) => {
   try {
     res.send(req.user);
   } catch (error) {
@@ -122,7 +122,7 @@ userRouter.get("/me", async (req, res, next) => {
 });
 
 // GET /api/users/:userId/orders
-userRouter.get("/:userId/orders", requireUser, async (req, res, next) => {
+usersRouter.get("/:userId/orders", requireUser, async (req, res, next) => {
   try {
     const { userId } = req.params;
     const user = await getUserById(userId);
@@ -141,7 +141,7 @@ userRouter.get("/:userId/orders", requireUser, async (req, res, next) => {
 });
 
 // GET /api/users/:userId/checkouts
-userRouter.get("/:userId/checkouts", requireUser, async (req, res, next) => {
+usersRouter.get("/:userId/checkouts", requireUser, async (req, res, next) => {
   try {
     const { userId } = req.params;
 
