@@ -55,7 +55,7 @@ async function createTables() {
     `);
     console.log("Finished building tables...");
   } catch (error) {
-    console.log("Erorr while creating tables...");
+    console.log("Error while creating tables...");
     throw error;
   }
 }
