@@ -10,7 +10,7 @@ async function dropTables() {
     `);
     console.log("Finished dropping tables...");
   } catch (error) {
-    console.log("Erorr while dropping tables...");
+    console.log("Error while dropping tables...");
     throw error;
   }
 }
