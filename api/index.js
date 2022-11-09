@@ -2,6 +2,7 @@ const express = require("express");
 const gamesRouter = require("./games");
 const reviewsRouter = require("./reviews");
 const jwt = require("jsonwebtoken");
+const usersRouter = require("./users");
 const { JWT_SECRET } = process.env;
 
 const apiRouter = express.Router();
@@ -40,5 +41,6 @@ apiRouter.get("/", (req, res, next) => {
 
 apiRouter.use("/games", gamesRouter);
 apiRouter.use("/reviews", reviewsRouter);
+apiRouter.use("/users", usersRouter);
 
 module.exports = apiRouter;

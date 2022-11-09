@@ -3,9 +3,8 @@ const usersRouter = express.Router();
 //const userRouter = express.Router();
 const jwt = require("jsonwebtoken");
 const { requireUser } = require("./utilities");
-
-const { getAllUsers, getUserByUsername, createUser } = require("../db");
 const {
+  getAllUsers,
   createUser,
   editEmail,
   getUserByUsername,
@@ -13,9 +12,8 @@ const {
   getUser,
   getAllCompletedOrdersByUserId,
   getAllCheckoutsByUserId,
-} = require("../db");
+} = require("../db/users");
 
-const jwt = require("jsonwebtoken");
 const { JWT_SECRET } = process.env;
 
 // POST /api/users/login
