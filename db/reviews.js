@@ -1,16 +1,16 @@
-const client = require("./client");
+const { client } = require("./client");
 
-const createReview = async ({ userId, gameId, message }) => {
+const createReview = async ({ userId, gameId, message, rating }) => {
   try {
     const {
       rows: [review],
     } = await client.query(
       `
-    INSERT INTO reviews ("userId", "gameId", message)
-    VALUES ($1, $2, $3)
+    INSERT INTO reviews ("userId", "gameId", message, rating)
+    VALUES ($1, $2, $3, $4)
     RETURNING *;
     `,
-      [userId, gameId, message]
+      [userId, gameId, message, rating]
     );
 
     return review;

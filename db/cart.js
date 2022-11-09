@@ -1,4 +1,4 @@
-const client = require(".");
+const { client } = require(".");
 
 const getCartByUserId = async (id) => {
   try {
