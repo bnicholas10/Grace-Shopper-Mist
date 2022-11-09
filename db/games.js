@@ -13,13 +13,6 @@ async function getGameById(gameId) {
       [gameId]
     );
 
-    if (!game) {
-      throw {
-        name: "GameNotFoundError",
-        message: "Could not find a game with that gameId",
-      };
-    }
-
     return game;
   } catch (error) {
     throw error;
@@ -47,6 +40,21 @@ async function getGameByName(name) {
     }
 
     return game;
+  } catch (error) {
+    throw error;
+  }
+}
+
+async function getGamesByCategory(category) {
+  try {
+    const { rows: games } = await client.query(
+      `
+      SELECT * FROM games WHERE category = $1;
+    `,
+      [category]
+    );
+    console.log(games);
+    return games;
   } catch (error) {
     throw error;
   }
@@ -121,10 +129,26 @@ async function updateGame(gameId, fields = {}) {
   }
 }
 
+async function deleteGame(gameId) {
+  try {
+    const { rows: result } = await client.query(
+      `
+      DELETE FROM games WHERE id = $1 RETURNING *;
+    `,
+      [gameId]
+    );
+    return result;
+  } catch (error) {
+    throw error;
+  }
+}
+
 module.exports = {
   getGameById,
   getGameByName,
   getAllGames,
   createGame,
   updateGame,
+  getGamesByCategory,
+  deleteGame,
 };
