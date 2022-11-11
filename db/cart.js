@@ -15,7 +15,7 @@ const getCartByUserId = async (id) => {
   }
 };
 
-const addToCart = async (userId, gameId, quantity) => {
+const addToCart = async ({ userId, gameId, quantity }) => {
   try {
     const {
       rows: [result],
@@ -47,7 +47,7 @@ const removeFromCart = async (id) => {
   }
 };
 
-const updateCart = async (id, quantity) => {
+const updateCart = async ({ id, quantity }) => {
   try {
     const {
       rows: [result],
@@ -64,9 +64,22 @@ const updateCart = async (id, quantity) => {
   }
 };
 
-const clearCart = async () => {};
+const clearCart = async (userId) => {
+  try {
+    const { rows: result } = await client.query(
+      `
+      DELETE FROM cart WHERE "userId" = $1;
+    `,
+      [userId]
+    );
+    return result;
+  } catch (error) {
+    console.log("Error with clearCart function...");
+    throw error;
+  }
+};
 
-modules.export = {
+module.exports = {
   getCartByUserId,
   addToCart,
   removeFromCart,
