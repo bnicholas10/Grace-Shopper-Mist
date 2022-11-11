@@ -1,4 +1,4 @@
-const { client } = require("./client");
+const { client } = require(".");
 
 const createReview = async ({ userId, gameId, message, rating }) => {
   try {
@@ -111,7 +111,6 @@ const deleteReview = async (id, userId) => {
 };
 
 module.exports = {
-  client,
   getReviewById,
   getReviewsByUser,
   getReviewsByGame,

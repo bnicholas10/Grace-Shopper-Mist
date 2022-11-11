@@ -2,6 +2,7 @@ const { client } = require(".");
 const { createUser } = require("./users");
 const { createGame } = require("./games");
 const { addToCart } = require("./cart");
+const { createReview } = require("./reviews");
 
 async function dropTables() {
   console.log("Dropping All Tables...");
@@ -56,7 +57,8 @@ async function createTables() {
         "userId" INTEGER REFERENCES users(id),
         "gameId" INTEGER REFERENCES games(id),
         message VARCHAR(1000),
-        rating INTEGER NOT NULL
+        rating INTEGER NOT NULL,
+        CHECK (rating <= 10)
       );
 
     `);
@@ -552,6 +554,57 @@ const createInitialCarts = async () => {
   }
 };
 
+async function createInitialReviews() {
+  try {
+    console.log("Starting to create reviews...");
+    const reviewsToCreate = [
+      {
+        userId: 1,
+        gameId: 1,
+        message: "Good game",
+        rating: 8,
+      },
+      {
+        userId: 1,
+        gameId: 13,
+        message: "This game sucks",
+        rating: 2,
+      },
+      {
+        userId: 2,
+        gameId: 13,
+        message: "Best game",
+        rating: 10,
+      },
+      {
+        userId: 4,
+        gameId: 40,
+        message: "Great new game",
+        rating: 9,
+      },
+      {
+        userId: 3,
+        gameId: 26,
+        message: "This game was ok at best",
+        rating: 6,
+      },
+      {
+        userId: 4,
+        gameId: 16,
+        message: "Fun on an occasion",
+        rating: 8,
+      },
+    ];
+
+    const result = await Promise.all(reviewsToCreate.map(createReview));
+    console.log("Reviews result: ", result);
+    console.log("Finished creating reviews...");
+  } catch (error) {
+    console.error("Error creating reviews!");
+    throw error;
+  }
+}
+
 async function rebuildDB() {
   try {
     console.log("Beginning to rebuildDB");
@@ -560,6 +613,7 @@ async function rebuildDB() {
     await createInitialGames();
     await createInitialUsers();
     await createInitialCarts();
+    await createInitialReviews();
     console.log("Finished rebuildDB");
   } catch (error) {
     console.log("Error during rebuildDB...");
