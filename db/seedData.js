@@ -1,6 +1,7 @@
 const { client } = require(".");
 const { createUser } = require("./users");
 const { createGame } = require("./games");
+const { addToCart } = require("./cart");
 
 async function dropTables() {
   console.log("Dropping All Tables...");
@@ -491,12 +492,70 @@ const createInitialUsers = async () => {
   }
 };
 
+const createInitialCarts = async () => {
+  console.log("Starting to create carts...");
+  try {
+    const cartsToCreate = [
+      {
+        userId: 2,
+        gameId: 1,
+        quantity: 1,
+      },
+      {
+        userId: 2,
+        gameId: 12,
+        quantity: 1,
+      },
+      {
+        userId: 4,
+        gameId: 13,
+        quantity: 1,
+      },
+      {
+        userId: 4,
+        gameId: 17,
+        quantity: 1,
+      },
+      {
+        userId: 3,
+        gameId: 1,
+        quantity: 1,
+      },
+      {
+        userId: 3,
+        gameId: 5,
+        quantity: 1,
+      },
+      {
+        userId: 1,
+        gameId: 9,
+        quantity: 1,
+      },
+      {
+        userId: 1,
+        gameId: 32,
+        quantity: 1,
+      },
+    ];
+    const result = await Promise.all(cartsToCreate.map(addToCart));
+
+    // console.log("Carts created:", result);
+    console.log("Finished creating Carts!");
+  } catch (error) {
+    console.error("Error creating carts!");
+    throw error;
+  }
+};
+
 async function rebuildDB() {
   try {
+    console.log("Beginning to rebuildDB");
     await dropTables();
     await createTables();
     await createInitialGames();
     await createInitialUsers();
+    await createInitialCarts();
+    console.log("Finished rebuildDB");
   } catch (error) {
     console.log("Error during rebuildDB...");
     throw error;
