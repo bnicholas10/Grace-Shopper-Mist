@@ -1,9 +1,10 @@
+//THIS PAGE IS UNDER CONSTRUCTION - HAS NOT BEEN TOUCHED YET - MAY BE CART?
 import React, { useEffect, useState } from "react";
 //import { getRoutines, createNewRoutine } from "./api/api";
 
 const MyGames = () => {
   //const [routines, setRoutines] = useState([]);
-  const [name, setName] = useState("");
+  const [game, setName] = useState("");
   const [goal, setGoal] = useState("");
 
   const [editRoutine, setEditRoutine] = useState({});
