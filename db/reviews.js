@@ -117,4 +117,5 @@ module.exports = {
   getReviewsByGame,
   updateReview,
   deleteReview,
+  createReview,
 };
