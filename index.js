@@ -14,7 +14,7 @@ app.use(express.json());
 
 app.use("/api", apiRouter);
 
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT || 4002;
 
 app.listen(PORT, () => {
   console.log("Server is up on ", PORT);
