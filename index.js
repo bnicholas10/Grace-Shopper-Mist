@@ -1,3 +1,15 @@
+import React from "react";
+import ReactDOM from "react-dom/client";
+//import ReactDOM from "react-dom";
+import App from "./components/App.js";
+import { BrowserRouter, Route } from "react-router-dom";
+
+//ReactDOM.render(<App />, document.querySelector("#app"));
+
+const appElement = document.getElementById("app");
+const root = ReactDOM.createRoot(appElement);
+root.render(<App />);
+
 // GET /api/games
 
 const express = require("express");
