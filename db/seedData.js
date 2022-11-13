@@ -49,7 +49,8 @@ async function createTables() {
         id SERIAL PRIMARY KEY,
         "userId" INTEGER REFERENCES users(id),
         "gameId" INTEGER REFERENCES games(id),
-        quantity INTEGER NOT NULL
+        quantity INTEGER NOT NULL,
+        purchased BOOLEAN DEFAULT false
       );
 
       CREATE TABLE reviews(
