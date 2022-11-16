@@ -1,0 +1,38 @@
+#registerField {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+}
+
+#registerField input {
+  display: block;
+  color: white;
+  margin-bottom: 10px;
+  width: 280px;
+  height: 40px;
+  padding: 5px;
+}
+
+#registerField button {
+  width: 293px;
+  height: 30px;
+  font-family: "Roboto", sans-serif;
+  color: white;
+}
+
+#registerField a {
+  color: white;
+  display: block;
+  margin: 10px;
+  position: relative;
+  left: 100px;
+}
+
+#registerField a:hover {
+  color: silver;
+}
+
+#registerField p {
+  color: red;
+}
