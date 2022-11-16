@@ -1,7 +1,6 @@
 //admin can add games
-import React, { useState } from "react";
+import { useState } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import { createGame } from "./api/games";
 
 const GamesForm = () => {
   const [name, setName] = useState("");
@@ -9,11 +8,11 @@ const GamesForm = () => {
 
   return (
     <form
-      id={"newGamesForm"}
-      onSubmit={(event) => {
-        event.preventDefault();
-        createGame(name, description);
-      }}
+    // id={"newGamesForm"}
+    // onSubmit={(event) => {
+    //   event.preventDefault();
+    //   createGame(name, description);
+    // }}
     >
       New Game:
       <label>New Game Name</label>

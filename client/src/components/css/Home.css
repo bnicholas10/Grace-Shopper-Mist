@@ -1,0 +1,42 @@
+#home {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* background-color: black; */
+  height: 100vh;
+  width: 100vw;
+}
+
+#homeMessage {
+  font-size: 35px;
+  color: white;
+  position: relative;
+  bottom: 150px;
+  box-shadow: 0px 8px 10px -5px silver;
+}
+
+#homeNavBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* background-color: white; */
+  width: 500px;
+}
+
+#homeNavBar a {
+  text-decoration: none;
+  color: white;
+}
+
+#homeNavBar a:hover {
+  text-decoration: none;
+  color: white;
+  letter-spacing: 3px;
+  text-decoration: solid white underline;
+  text-shadow: 5px 5px 10px gold;
+}
+
+#homeGamesButton {
+  font-size: 35px;
+}

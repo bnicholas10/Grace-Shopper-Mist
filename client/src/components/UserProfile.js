@@ -1,19 +1,18 @@
 import React, { useEffect, useState } from "react";
-import { getUser } from "./api/api";
 import MyGames from "./MyGames";
 
 const UserProfile = () => {
   const [user, setUser] = useState({});
   const token = localStorage.getItem("token");
 
-  const fetchUserProfile = async () => {
-    const profile = await getUser(user);
-    console.log("current user profile:", profile);
-    setUser(profile);
-  };
+  // const fetchUserProfile = async () => {
+  //   const profile = await getUser(user);
+  //   console.log("current user profile:", profile);
+  //   setUser(profile);
+  // };
 
   useEffect(() => {
-    fetchUserProfile();
+    // fetchUserProfile();
   }, []);
   return <div>{token ? MyGames() : "Please Log In to See Your Cart"}</div>;
 };

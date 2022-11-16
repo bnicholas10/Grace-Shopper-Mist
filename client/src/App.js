@@ -1,31 +1,42 @@
-import { useEffect, useState } from "react";
-import { Link, Route, Routes } from "react-router-dom";
-import "./App.css";
+import { useEffect, useState, Link } from "react";
+import { Routes, Route } from "react-router-dom";
 import Games from "./components/Games";
+import GamesForm from "./components/GamesForm";
+import Home from "./components/Home";
+import UserProfile from "./components/UserProfile";
 
-function App() {
-  const [games, setGames] = useState([]);
-  // i want to fetch the actual books and save them in state
-  const fetchGames = async () => {
-    const response = await fetch("/api/games");
-    const data = await response.json();
-    setBooks(data.games);
-  };
-
-  console.log(books);
-
+const App = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   useEffect(() => {
-    fetchGames();
+    const validToken = localStorage.getItem("token");
+    if (validToken) setIsLoggedIn(true);
   }, []);
 
   return (
-    <div>
-      <Link to="/games">Games</Link>
+    <div className="App">      
       <Routes>
+        <Route
+          path={"/"}
+          element={
+            <Home isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
+          }
+        />
+        <Route
+          path="/UserProfile"
+          element={
+            isLoggedIn ? <UserProfile /> : <p>Log In to See Profile/Cart</p>
+          }
+        />
         <Route path="/games" element={<Games />} />
+        {/* <Route path="Routines" element={<Routines />} /> */}
+
+        <Route
+          path="/GamesForm"
+          element={isLoggedIn ? <GamesForm /> : <p>Log In to Add New Game</p>}
+        />
       </Routes>
     </div>
   );
-}
+};
 
 export default App;
