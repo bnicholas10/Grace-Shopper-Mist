@@ -3,17 +3,21 @@ import { Routes, Route } from "react-router-dom";
 import Games from "./components/Games";
 import GamesForm from "./components/GamesForm";
 import Home from "./components/Home";
+import Login from "./components/Login";
 import UserProfile from "./components/UserProfile";
 
 const App = () => {
+  const [user, setUser] = useState({});
+  const [token, setToken] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+
   useEffect(() => {
     const validToken = localStorage.getItem("token");
     if (validToken) setIsLoggedIn(true);
   }, []);
 
   return (
-    <div className="App">      
+    <div className="App">
       <Routes>
         <Route
           path={"/"}
@@ -21,6 +25,7 @@ const App = () => {
             <Home isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
           }
         />
+        <Route path={"/login"} element={<Login />} />
         <Route
           path="/UserProfile"
           element={
