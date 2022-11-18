@@ -49,7 +49,10 @@ usersRouter.post("/login", async (req, res, next) => {
         JWT_SECRET,
         { expiresIn: "2w" }
       );
-      res.send({ user, username, message: "You're logged in!", token });
+      res.send({
+        success: true,
+        data: { user, message: "You're logged in!", token },
+      });
     }
   } catch (error) {
     next(error);
@@ -123,7 +126,7 @@ usersRouter.post("/register", async (req, res, next) => {
 // GET /api/users/me
 usersRouter.get("/me", async (req, res, next) => {
   try {
-    res.send(req.user);
+    res.send({ user: req.user });
   } catch (error) {
     next(error);
   }

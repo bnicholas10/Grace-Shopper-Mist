@@ -1,0 +1,10 @@
+#userProfile {
+  display: flex;
+}
+
+#userProfile h1 {
+  color: white;
+  position: relative;
+  top: 100px;
+  left: 55px;
+}
