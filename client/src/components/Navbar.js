@@ -1,14 +1,16 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./css/Navbar.css";
 
 const Navbar = (props) => {
   const { token, setToken, setUser } = props;
+  const navigate = useNavigate();
 
   const logOut = (e) => {
     e.preventDefault();
     localStorage.removeItem("token");
     setToken("");
     setUser(null);
+    navigate("/");
     return;
   };
 
