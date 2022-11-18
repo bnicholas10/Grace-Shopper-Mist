@@ -16,27 +16,14 @@
   box-shadow: 0px 12px 12px -10px silver;
 }
 
-#homeNavBar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  /* background-color: white; */
-  width: 500px;
+#homeUser {
+  color: rgba(255, 255, 255, 0.5);
+  position: relative;
+  bottom: 120px;
 }
 
-#homeNavBar a {
-  text-decoration: none;
+#signature {
   color: white;
-}
-
-#homeNavBar a:hover {
-  text-decoration: none;
-  color: white;
-  letter-spacing: 3px;
-  text-decoration: solid white underline;
-  text-shadow: 5px 5px 10px gold;
-}
-
-#homeGamesButton {
-  font-size: 35px;
+  position: fixed;
+  bottom: 25px;
 }

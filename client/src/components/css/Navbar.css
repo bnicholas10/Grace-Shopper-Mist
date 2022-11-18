@@ -1,0 +1,30 @@
+#navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  height: 55px;
+  width: 100vw;
+  padding: 15px;
+  box-shadow: 0px 0px 25px white;
+}
+
+#title {
+  color: white;
+  font-size: 28px;
+  position: relative;
+  left: 50px;
+}
+
+a {
+  color: white;
+  margin-right: 30px;
+  text-decoration: none;
+  letter-spacing: 3px;
+}
+
+a:hover {
+  color: silver;
+  text-decoration: underline;
+  letter-spacing: 5px;
+}

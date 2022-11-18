@@ -1,44 +1,68 @@
 import { useEffect, useState, Link } from "react";
 import { Routes, Route } from "react-router-dom";
+import { fetchUser } from "./api";
 import Games from "./components/Games";
 import GamesForm from "./components/GamesForm";
 import Home from "./components/Home";
 import Login from "./components/Login";
+import Navbar from "./components/Navbar";
+import Register from "./components/Register";
 import UserProfile from "./components/UserProfile";
 
 const App = () => {
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState(null);
   const [token, setToken] = useState("");
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const checkToken = () => {
+    if (token === "" && localStorage.getItem("token")) {
+      setToken(localStorage.getItem("token"));
+      console.log(`fetched token from local`);
+    }
+  };
+  checkToken();
+
+  const handleFetchUser = async (token) => {
+    if (token) {
+      const userInfo = await fetchUser(token);
+      setUser(userInfo.user);
+    } else {
+      setUser(null);
+    }
+  };
 
   useEffect(() => {
-    const validToken = localStorage.getItem("token");
-    if (validToken) setIsLoggedIn(true);
-  }, []);
+    handleFetchUser(token);
+  }, [token]);
 
   return (
     <div className="App">
+      <Navbar token={token} setToken={setToken} user={user} setUser={setUser} />
       <Routes>
         <Route
           path={"/"}
           element={
-            <Home isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
+            <Home
+              token={token}
+              setToken={setToken}
+              user={user}
+              setUser={setUser}
+            />
           }
         />
-        <Route path={"/login"} element={<Login />} />
         <Route
-          path="/UserProfile"
+          path={"/login"}
           element={
-            isLoggedIn ? <UserProfile /> : <p>Log In to See Profile/Cart</p>
+            <Login
+              setToken={setToken}
+              setUser={setUser}
+              user={user}
+              token={token}
+            />
           }
         />
-        <Route path="/games" element={<Games />} />
-        {/* <Route path="Routines" element={<Routines />} /> */}
-
-        <Route
-          path="/GamesForm"
-          element={isLoggedIn ? <GamesForm /> : <p>Log In to Add New Game</p>}
-        />
+        <Route path={"/register"} element={<Register />} />
+        <Route path={"/profile"} element={<UserProfile />} />
+        <Route path={"/games"} element={<Games />} />
       </Routes>
     </div>
   );

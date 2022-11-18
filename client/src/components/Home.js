@@ -4,6 +4,7 @@ import "./css/Home.css";
 // import { login, register } from "./api/index"; //revisit where this lives
 
 const Home = (props) => {
+  const { user } = props;
   // useEffect(() => {
   //   const getToken = localStorage.getItem("token") ? true : false;
   //   console.log("is user logged in:", getToken);
@@ -13,13 +14,11 @@ const Home = (props) => {
   return (
     <div id="home">
       <p id="homeMessage">Mist: Your One Stop Shop For All Things Games</p>
-      <div id="homeNavBar">
-        <Link to={"/login"}>Log In</Link>
-        <Link to={"/games"} id="homeGamesButton">
-          Games
-        </Link>
-        <Link to={"/register"}>Register</Link>
-      </div>
+      {user && <p id="homeUser">Logged in as: {user.username}</p>}
+      <p id="signature">
+        Created By: Bernie Pereda, Devin Dodd, Diana Clemente, and Brett
+        Nicholas
+      </p>
     </div>
   );
 };
