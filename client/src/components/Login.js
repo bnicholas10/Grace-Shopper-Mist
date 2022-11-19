@@ -16,10 +16,10 @@ const Login = (props) => {
     const result = await loginUser(username, password);
     console.log("RESULT: ", result);
     if (!result || !result.success) {
-      setError("An Error Occurred!");
+      setError(result.error.message);
       setTimeout(() => {
         setError("");
-      }, 2000);
+      }, 2500);
     } else {
       localStorage.setItem("token", result.data.token);
       setToken(result.data.token);

@@ -6,6 +6,7 @@ import GamesForm from "./components/GamesForm";
 import Home from "./components/Home";
 import Login from "./components/Login";
 import Navbar from "./components/Navbar";
+import NotFound from "./components/NotFound";
 import Register from "./components/Register";
 import UserProfile from "./components/UserProfile";
 
@@ -60,9 +61,13 @@ const App = () => {
             />
           }
         />
-        <Route path={"/register"} element={<Register />} />
+        <Route
+          path={"/register"}
+          element={<Register setToken={setToken} setUser={setUser} />}
+        />
         <Route path={"/profile"} element={<UserProfile />} />
         <Route path={"/games"} element={<Games />} />
+        <Route path={"*"} element={<NotFound />} />
       </Routes>
     </div>
   );

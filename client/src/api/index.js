@@ -19,7 +19,7 @@ export const loginUser = async (username, password) => {
   }
 };
 
-export const registerUser = async (username, password) => {
+export const registerUser = async (name, email, username, password) => {
   try {
     const response = await fetch(`${BASE_URL}/users/register`, {
       method: "POST",
@@ -27,11 +27,22 @@ export const registerUser = async (username, password) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
+        name,
+        email,
         username,
         password,
       }),
     });
     const result = await response.json();
+    if (!result) {
+      return {
+        success: false,
+        error: {
+          name: "error",
+          message: "something went wrong, please try again",
+        },
+      };
+    }
     return result;
   } catch (error) {
     console.error(error);
