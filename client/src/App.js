@@ -1,8 +1,10 @@
 import { useEffect, useState, Link } from "react";
 import { Routes, Route } from "react-router-dom";
-import { fetchUser } from "./api";
+import { fetchGames, fetchUser } from "./api";
+// import "./index.css";
 import Games from "./components/Games";
 import GamesForm from "./components/GamesForm";
+import Game from "./components/Game";
 import Home from "./components/Home";
 import Login from "./components/Login";
 import Navbar from "./components/Navbar";
@@ -13,6 +15,7 @@ import UserProfile from "./components/UserProfile";
 const App = () => {
   const [user, setUser] = useState(null);
   const [token, setToken] = useState("");
+  const [games, setGames] = useState([]);
 
   const checkToken = () => {
     if (token === "" && localStorage.getItem("token")) {
@@ -31,8 +34,15 @@ const App = () => {
     }
   };
 
+  const handleFetchGames = async () => {
+    const allGames = await fetchGames();
+    console.log(allGames.data);
+    setGames(allGames.data);
+  };
+
   useEffect(() => {
     handleFetchUser(token);
+    handleFetchGames();
   }, [token]);
 
   return (
@@ -66,7 +76,14 @@ const App = () => {
           element={<Register setToken={setToken} setUser={setUser} />}
         />
         <Route path={"/profile"} element={<UserProfile />} />
-        <Route path={"/games"} element={<Games />} />
+        <Route
+          path={"/games"}
+          element={<Games token={token} games={games} />}
+        />
+        <Route
+          path={"/games/:gameId/*"}
+          element={<Game token={token} games={games} />}
+        />
         <Route path={"*"} element={<NotFound />} />
       </Routes>
     </div>

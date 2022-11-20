@@ -64,3 +64,37 @@ export const fetchUser = async (token) => {
     console.error(error);
   }
 };
+
+export const fetchGames = async () => {
+  try {
+    const response = await fetch(`${BASE_URL}/games`, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    const result = await response.json();
+
+    console.log(result);
+    return result;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const fetchGameById = async (gameId) => {
+  try {
+    const response = await fetch(`${BASE_URL}/games/`, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    const result = await response.json();
+
+    console.log(result);
+    return result;
+  } catch (error) {
+    throw error;
+  }
+};
