@@ -6,7 +6,7 @@ const Games = ({ token, games }) => {
   // console.log(games);
 
   return (
-    <div>
+    <div className="gamesContainer">
       <h1>Games</h1>
       {token ? (
         <Link to={`/NewGame`}>
@@ -21,28 +21,19 @@ const Games = ({ token, games }) => {
       <div className="gamesList">
         {games.map((game) => {
           return (
-            <div className="game-preview" key={game.id}>
-              <div className="content">
-                <h2>{game.name}</h2>
-                <p>{game.description}</p>
-                <h3>
-                  <strong>Publisher: </strong> {game.publisher}
-                </h3>
-                <h3>
-                  <strong>Price: </strong>${game.price}
-                </h3>
-                <h4>
-                  <strong>Rating: </strong>
-                  {game.rating}
-                </h4>
-                <h4>
-                  <strong>Category: </strong>
-                  {game.category}
-                </h4>
-              </div>
-              <Link to={`/games/${game.id}`}>
-                <button> View Game </button>
-              </Link>
+            <div className="singleGame" key={game.id}>
+              <a href={`/games/${game.id}`}>
+                <div className="content">
+                  <div className="contentLeft">
+                    <h2>{game.name}</h2>
+                    <h4>{game.category}</h4>
+                  </div>
+
+                  <div className="contentRight">
+                    <h2>${game.price}</h2>
+                  </div>
+                </div>
+              </a>
             </div>
           );
         })}

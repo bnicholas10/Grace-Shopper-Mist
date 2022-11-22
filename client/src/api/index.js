@@ -75,7 +75,7 @@ export const fetchGames = async () => {
 
     const result = await response.json();
 
-    console.log(result);
+    // console.log(result);
     return result;
   } catch (error) {
     throw error;
@@ -84,7 +84,7 @@ export const fetchGames = async () => {
 
 export const fetchGameById = async (gameId) => {
   try {
-    const response = await fetch(`${BASE_URL}/games/`, {
+    const response = await fetch(`${BASE_URL}/games/${gameId}`, {
       headers: {
         "Content-Type": "application/json",
       },
@@ -92,7 +92,7 @@ export const fetchGameById = async (gameId) => {
 
     const result = await response.json();
 
-    console.log(result);
+    // console.log(result);
     return result;
   } catch (error) {
     throw error;

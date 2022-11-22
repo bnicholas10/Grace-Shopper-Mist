@@ -1,0 +1,41 @@
+.gameContainer {
+  display: flex;
+
+  justify-content: center;
+  color: white;
+  position: relative;
+  top: 100px;
+  left: 55px;
+}
+
+.gameView {
+  width: 700px;
+  min-height: 200px;
+  height: auto;
+  margin: 10px;
+  border-style: solid;
+  border-color: aqua;
+  background-color: rgb(22, 21, 21);
+}
+
+.gameInfo {
+  display: flex;
+  flex-direction: column;
+
+  margin: 20px;
+}
+
+.gameInfo h1,
+p,
+h3 {
+  margin: 2.5px;
+}
+
+.gameInfoMore {
+  margin-top: 10px;
+  width: 650px;
+
+  display: flex;
+  justify-content: space-around;
+  justify-items: start;
+}

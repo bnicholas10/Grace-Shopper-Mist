@@ -1,34 +1,49 @@
 import { Route, Routes, useParams, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { API } from "../App";
-import { useNavigate } from "react-router-dom";
+import { fetchGameById } from "../api";
+import "./css/Game.css";
 
 const Game = ({ token, games }) => {
   const params = useParams();
+  const [game, setGame] = useState([]);
 
-  console.log(params);
+  const loadGame = async (gameId) => {
+    const gameInfo = await fetchGameById(gameId);
+    // console.log(gameInfo);
+    setGame(gameInfo.data);
+  };
 
-  const getGame = async () => {};
-
-  var selectedGame = games.filter((game) => game.id === params.gameId)[0];
-
-  console.log(selectedGame);
-
-  if (!selectedGame) {
-    return <p></p>;
-  }
-
-  console.log("JFGKJFGDKJD");
-  console.log(selectedGame);
+  useEffect(() => {
+    loadGame(params.gameId);
+  }, [token]);
 
   return (
-    <div>
-      <h1>Title: {selectedGame.name}</h1>
-      <p>Description: {selectedGame.description}</p>
-      <h3>Seller: {selectedGame.publisher}</h3>
-      <h3>Price: {selectedGame.price}</h3>
-      <h3>Location: {selectedGame.rating}</h3>
-      <h3>Location: {selectedGame.category}</h3>
+    <div className="gameContainer">
+      <div className="gameView" id="test">
+        <div className="gameInfo">
+          <h1>{game.name}</h1>
+          <p>{game.description}</p>
+
+          <div className="gameInfoMore">
+            <div className="gameInfoLeft">
+              <h3>Publisher: </h3>
+              <h3>Rating:</h3>
+              <h3>Category: </h3>
+              <h3>Price:</h3>
+            </div>
+
+            <div className="gameInfoRight">
+              <h3>{game.publisher}</h3>
+
+              <h3>{game.rating}</h3>
+
+              <h3>{game.category}</h3>
+
+              <h3>{game.price}</h3>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
