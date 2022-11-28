@@ -17,19 +17,17 @@ const Register = (props) => {
     e.preventDefault();
     const result = await registerUser(name, email, username, password);
     console.log("RESULT: ", result);
-    if (!result || !result.success) {
-      if (result.error) {
-        setError(result.error.message);
-      } else if (!result.error) {
-        setError("An unexpected error has occured!");
-      }
+
+    if (!result.token) {
+      setError(result.message);
+
       setTimeout(() => {
         setError("");
       }, 2500);
     } else {
-      localStorage.setItem("token", result.data.token);
-      setToken(result.data.token);
-      setUser(result.data.user);
+      localStorage.setItem("token", result.token);
+      setToken(result.token);
+      setUser(result.user);
       console.log(`fetched token from server`);
       setName("");
       setEmail("");

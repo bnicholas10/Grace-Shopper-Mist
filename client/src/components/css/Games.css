@@ -1,5 +1,6 @@
 .gamesContainer {
   color: white;
+  width: 90%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -8,8 +9,22 @@
   left: 55px;
 }
 
-.singleGame a {
-  background-color: aqua;
+.main {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  justify-content: space-around;
+}
+
+.gamesList h1 {
+  margin-bottom: 10px;
+}
+
+.gamesContainer button {
+  background-color: black;
+  /* margin: 20px; */
+  width: 50px;
 }
 
 .content {
@@ -24,11 +39,14 @@
 
 .contentLeft {
   margin-left: 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 .contentLeft h4 {
-  font-weight: 400;
-  background-color: aqua;
+  /* font-weight: 400; */
+  font-size: x-small;
 }
 
 .contentRight {
@@ -42,4 +60,10 @@
 .contentLeft h4,
 h2 {
   background-color: rgb(22, 21, 21);
+}
+
+img {
+  width: 150px;
+  height: 70px;
+  margin-right: 10px;
 }

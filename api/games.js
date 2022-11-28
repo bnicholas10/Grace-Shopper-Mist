@@ -44,7 +44,8 @@ gamesRouter.get("/:gameId", async (req, res, next) => {
 gamesRouter.post("/", async (req, res, next) => {
   // verify user is admin
   const user = req.user;
-  const { name, price, publisher, description, rating, category } = req.body;
+  const { name, price, publisher, description, rating, category, image } =
+    req.body;
   try {
     if (user.isAdmin) {
       const result = await createGame({
@@ -54,6 +55,7 @@ gamesRouter.post("/", async (req, res, next) => {
         description,
         rating,
         category,
+        image,
       });
       if (!result) {
         res.send({
@@ -83,7 +85,8 @@ gamesRouter.post("/", async (req, res, next) => {
 gamesRouter.patch("/:gameId", async (req, res, next) => {
   const user = req.user;
   const { gameId } = req.params;
-  const { name, price, publisher, description, rating, category } = req.body;
+  const { name, price, publisher, description, rating, category, image } =
+    req.body;
   try {
     if (!gameId) {
       res.send({
@@ -99,6 +102,7 @@ gamesRouter.patch("/:gameId", async (req, res, next) => {
         description,
         rating,
         category,
+        image,
       });
       if (!result) {
         res.send({

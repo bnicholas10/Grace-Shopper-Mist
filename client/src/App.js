@@ -36,7 +36,7 @@ const App = () => {
 
   const handleFetchGames = async () => {
     const allGames = await fetchGames();
-    console.log(allGames.data);
+    // console.log(allGames.data);
     setGames(allGames.data);
   };
 

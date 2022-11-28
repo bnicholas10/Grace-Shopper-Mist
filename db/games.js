@@ -84,17 +84,18 @@ async function createGame({
   description,
   rating,
   category,
+  image,
 }) {
   try {
     const {
       rows: [game],
     } = await client.query(
       `
-      INSERT INTO games(name, price, publisher, description, rating, category ) 
-      VALUES($1, $2, $3, $4, $5, $6)
+      INSERT INTO games(name, price, publisher, description, rating, category, image ) 
+      VALUES($1, $2, $3, $4, $5, $6, $7)
       RETURNING *;
     `,
-      [name, price, publisher, description, rating, category]
+      [name, price, publisher, description, rating, category, image]
     );
 
     return game;

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./css/Games.css";
+import GamesLowerPrice from "./GamesLowerPrice";
 
 const Games = ({ token, games }) => {
   // console.log(games);
@@ -18,25 +19,32 @@ const Games = ({ token, games }) => {
         </button>
       )}
 
-      <div className="gamesList">
-        {games.map((game) => {
-          return (
-            <div className="singleGame" key={game.id}>
-              <a href={`/games/${game.id}`}>
-                <div className="content">
-                  <div className="contentLeft">
-                    <h2>{game.name}</h2>
-                    <h4>{game.category}</h4>
-                  </div>
+      <div className="main">
+        <div className="gamesList">
+          <h1>ALL GAMES</h1>
+          {games.map((game) => {
+            return (
+              <div className="singleGame" key={game.id}>
+                <a href={`/games/${game.id}`}>
+                  <div className="content">
+                    <div className="contentLeft">
+                      <img src={game.image} alt="test Image" />
+                      <h5>{game.name}</h5>
+                      {/* <h4>{game.category}</h4> */}
+                    </div>
 
-                  <div className="contentRight">
-                    <h2>${game.price}</h2>
+                    <div className="contentRight">
+                      <h5>${game.price}</h5>
+                    </div>
                   </div>
-                </div>
-              </a>
-            </div>
-          );
-        })}
+                </a>
+              </div>
+            );
+          })}
+        </div>
+        <div className="side">
+          <GamesLowerPrice games={games} />
+        </div>
       </div>
     </div>
   );

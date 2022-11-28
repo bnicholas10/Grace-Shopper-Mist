@@ -85,16 +85,26 @@ usersRouter.post("/register", async (req, res, next) => {
     const { name, username, email, password } = req.body;
     const queriedUser = await getUserByUsername(username);
     if (queriedUser) {
-      res.status(401);
-      next({
+      res.send({
         name: "UserExistsError",
         message: "A user by that name already exists",
       });
     } else if (password.length < 8) {
-      res.status(401);
-      next({
+      res.send({
         name: "PasswordLengthError",
         message: "Password too short! Must be 8 characters or longer.",
+      });
+    } else if (name.length < 2) {
+      res.send({
+        name: "UserCreationError",
+        message: "Please enter a name. Must be longer than 2 characters",
+      });
+    } else if (
+      !email.includes(("@" && ".com") || ("@" && ".edu") || ("@" && ".gov"))
+    ) {
+      res.send({
+        name: "UserCreationError",
+        message: "Please enter a valid email",
       });
     } else {
       const user = await createUser({
