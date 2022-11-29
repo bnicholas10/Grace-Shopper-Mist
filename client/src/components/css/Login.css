@@ -11,6 +11,9 @@
   background-color: black;
   display: block;
   color: white;
+  outline: none;
+  border: none;
+  border-bottom: 2px solid silver;
   margin-bottom: 10px;
   width: 280px;
   height: 40px;
