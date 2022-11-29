@@ -4,9 +4,6 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import "./css/gamesLowerPrice.css";
 
 const GamesLowerPrice = ({ games }) => {
-  const [name, setName] = useState("");
-  const [description, setDescription] = useState("");
-
   var filteredGames = games.filter((low) => low.price <= 40);
   console.log(filteredGames);
 

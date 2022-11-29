@@ -3,26 +3,62 @@ import { Link } from "react-router-dom";
 import "./css/Games.css";
 import GamesLowerPrice from "./GamesLowerPrice";
 
+const gameSearch = (games, text) => {
+  text = text.toLowerCase();
+
+  const { name } = games;
+
+  const searches = [name];
+  for (const query of searches) {
+    if (query.toLowerCase().includes(text)) {
+      return true;
+    }
+  }
+};
+
 const Games = ({ token, games }) => {
-  // console.log(games);
+  const [searchTerm, setSearchTerm] = useState("");
+
+  var test = searchTerm
+    ? games.filter((game) => gameSearch(game, searchTerm))
+    : games;
+
+  const handleSearch = async (event) => {
+    event.preventDefault();
+  };
 
   return (
     <div className="gamesContainer">
       <h1>Games</h1>
-      {token ? (
-        <Link to={`/NewGame`}>
-          <button>Add new game</button>
-        </Link>
-      ) : (
-        <button>
-          <Link to={"/Login"}>Login</Link>
-        </button>
-      )}
+      <button>
+        <Link to={"/Login"}>Login</Link>
+      </button>
+
+      <div className="navbar">
+        <div className="navbarSearch">
+          <form onSubmit={handleSearch}>
+            <fieldset>
+              <label id="filter">Search </label>
+              <input
+                id="filterInput"
+                type="text"
+                placeholder="Type here to search"
+                value={searchTerm}
+                onChange={(event) => {
+                  setSearchTerm(event.target.value);
+
+                  // console.log(event.target.value);
+                }}
+              />
+            </fieldset>
+          </form>
+        </div>
+      </div>
 
       <div className="main">
         <div className="gamesList">
           <h1>ALL GAMES</h1>
-          {games.map((game) => {
+          {test.map((game) => {
             return (
               <div className="singleGame" key={game.id}>
                 <a href={`/games/${game.id}`}>
@@ -30,7 +66,6 @@ const Games = ({ token, games }) => {
                     <div className="contentLeft">
                       <img src={game.image} alt="test Image" />
                       <h5>{game.name}</h5>
-                      {/* <h4>{game.category}</h4> */}
                     </div>
 
                     <div className="contentRight">

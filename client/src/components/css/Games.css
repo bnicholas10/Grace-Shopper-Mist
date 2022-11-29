@@ -67,3 +67,10 @@ img {
   height: 70px;
   margin-right: 10px;
 }
+
+.navbar {
+  background-color: rgb(22, 21, 21);
+  width: 50%;
+  margin-bottom: 40px;
+  margin-top: 40px;
+}
