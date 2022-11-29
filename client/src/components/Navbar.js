@@ -2,7 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import "./css/Navbar.css";
 
 const Navbar = (props) => {
-  const { token, setToken, setUser } = props;
+  const { token, setToken, setUser, user } = props;
   const navigate = useNavigate();
 
   const logOut = (e) => {
@@ -17,6 +17,11 @@ const Navbar = (props) => {
   return (
     <div id="navbar">
       <span id="title">Mist</span>
+      {user && user.isAdmin && (
+        <Link id="adminDashLink" to={"/admin"}>
+          Admin Dashboard
+        </Link>
+      )}
       <div id="navlinks">
         <Link to={"/"}>Home</Link>
         <Link to={"/games"}>Games</Link>

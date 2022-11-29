@@ -9,6 +9,10 @@
   box-shadow: 0px 0px 25px white;
 }
 
+/* #navlinks {
+  background-color: aqua;
+} */
+
 #title {
   color: white;
   font-size: 28px;
@@ -27,4 +31,9 @@ a:hover {
   color: silver;
   text-decoration: underline;
   letter-spacing: 5px;
+}
+
+#adminDashLink {
+  position: relative;
+  right: 300px;
 }

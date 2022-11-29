@@ -36,4 +36,14 @@ apiRouter.use("/games", gamesRouter);
 apiRouter.use("/reviews", reviewsRouter);
 apiRouter.use("/users", usersRouter);
 
+apiRouter.use("*", (req, res, next) => {
+  res.status(404).send({ Error: "404", message: "Not found" });
+});
+
+apiRouter.use((error, req, res, next) => {
+  console.log("ERROR: ", error);
+  res.status(500).send("something broke!");
+  return { error };
+});
+
 module.exports = apiRouter;

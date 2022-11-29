@@ -28,17 +28,17 @@ async function createUser({ email, username, password, name, isAdmin }) {
 async function getUser({ username, password }) {
   try {
     const user = await getUserByUsername(username);
-    const hashedPassword = user.password;
-
-    const passwordsMatch = await bcrypt.compare(password, hashedPassword);
-
+    // console.log("USER: ", user);
     if (user) {
+      const hashedPassword = user.password;
+      const passwordsMatch = await bcrypt.compare(password, hashedPassword);
       if (!passwordsMatch) {
         return;
       } else {
         const _user = {
           id: user.id,
           username: user.username,
+          isAdmin: user.isAdmin,
         };
 
         return _user;
@@ -87,7 +87,7 @@ async function getUserById(userId) {
     const {
       rows: [user],
     } = await client.query(`
-      SELECT id, username
+      SELECT id, username, "isAdmin"
       FROM users
       WHERE id=${userId}
     `);
@@ -121,10 +121,30 @@ async function getUserByUsername(username) {
   }
 }
 
+async function getUserByEmail(email) {
+  try {
+    const {
+      rows: [user],
+    } = await client.query(
+      `
+      SELECT *
+      FROM users
+      WHERE email=$1;
+    `,
+      [email]
+    );
+
+    return user;
+  } catch (error) {
+    throw error;
+  }
+}
+
 module.exports = {
   createUser,
   getUser,
   updateUser,
   getUserById,
   getUserByUsername,
+  getUserByEmail,
 };

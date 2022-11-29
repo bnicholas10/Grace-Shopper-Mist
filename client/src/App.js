@@ -11,6 +11,7 @@ import Navbar from "./components/Navbar";
 import NotFound from "./components/NotFound";
 import Register from "./components/Register";
 import UserProfile from "./components/UserProfile";
+import AdminDash from "./components/AdminDash";
 
 const App = () => {
   const [user, setUser] = useState(null);
@@ -36,7 +37,7 @@ const App = () => {
 
   const handleFetchGames = async () => {
     const allGames = await fetchGames();
-    console.log(allGames.data);
+    // console.log(allGames.data);
     setGames(allGames.data);
   };
 
@@ -53,6 +54,17 @@ const App = () => {
           path={"/"}
           element={
             <Home
+              token={token}
+              setToken={setToken}
+              user={user}
+              setUser={setUser}
+            />
+          }
+        />
+        <Route
+          path={"/admin/*"}
+          element={
+            <AdminDash
               token={token}
               setToken={setToken}
               user={user}

@@ -1,0 +1,14 @@
+#adminDash {
+  display: flex;
+  justify-content: center;
+  padding-top: 85px;
+  color: white;
+  height: 100vh;
+  /* background-color: aqua; */
+}
+
+.authError {
+  margin-left: auto;
+  margin-right: auto;
+  /* background-color: red; */
+}

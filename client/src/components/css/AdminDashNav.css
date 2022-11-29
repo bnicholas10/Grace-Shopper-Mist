@@ -1,0 +1,8 @@
+#AdminDashNavBar {
+  display: flex;
+  flex-direction: column;
+}
+
+#AdminDashNavBar a {
+  margin-bottom: 10px;
+}
