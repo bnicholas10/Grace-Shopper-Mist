@@ -88,60 +88,28 @@ usersRouter.patch("/me", requireUser, async (req, res, next) => {
 usersRouter.post("/register", async (req, res, next) => {
   try {
     const { name, username, email, password } = req.body;
-    const userByUsername = await getUserByUsername(username);
-    const userByEmail = await getUserByEmail(email);
-    if (userByUsername) {
+    const queriedUser = await getUserByUsername(username);
+    if (queriedUser) {
       res.send({
-        success: false,
-        error: {
-          name: "UserExistsError",
-          message: "A user by that name already exists",
-        },
-      });
-    } else if (userByEmail) {
-      res.send({
-        success: false,
-        error: {
-          name: "UserExistsError",
-          message: "That email is already in use",
-        },
-      });
-    } else if (!name) {
-      res.send({
-        success: false,
-        error: { name: "Missing name error", message: "Please provide a name" },
-      });
-    } else if (!email) {
-      res.send({
-        success: false,
-        error: {
-          name: "Missing email error",
-          message: "Please provide an email",
-        },
-      });
-    } else if (!username) {
-      res.send({
-        success: false,
-        error: {
-          name: "Missing username error",
-          message: "Please provide a username",
-        },
-      });
-    } else if (!password) {
-      res.send({
-        success: false,
-        error: {
-          name: "Missing password",
-          message: "Please provide a password",
-        },
+        name: "UserExistsError",
+        message: "A user by that name already exists",
       });
     } else if (password.length < 8) {
       res.send({
-        success: false,
-        error: {
-          name: "PasswordLengthError",
-          message: "Password too short! Must be 8 characters or longer.",
-        },
+        name: "PasswordLengthError",
+        message: "Password too short! Must be 8 characters or longer.",
+      });
+    } else if (name.length < 2) {
+      res.send({
+        name: "UserCreationError",
+        message: "Please enter a name. Must be longer than 2 characters",
+      });
+    } else if (
+      !email.includes(("@" && ".com") || ("@" && ".edu") || ("@" && ".gov"))
+    ) {
+      res.send({
+        name: "UserCreationError",
+        message: "Please enter a valid email",
       });
     } else {
       const user = await createUser({

@@ -1,0 +1,40 @@
+.lowerPriced h1 {
+  margin-bottom: 10px;
+}
+
+.contentLower {
+  height: 65px;
+  width: 430px;
+
+  background-color: rgb(22, 21, 21);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.contentLeftLower {
+  margin-left: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.contentLeftLower h4 {
+  font-weight: 400;
+  font-size: x-small;
+}
+
+.contentRightLower {
+  margin-right: 20px;
+}
+
+.contentLeftLower h4,
+h2 {
+  background-color: rgb(22, 21, 21);
+}
+
+#smallerImg {
+  width: 75px;
+  height: 35px;
+  margin-right: 10px;
+}

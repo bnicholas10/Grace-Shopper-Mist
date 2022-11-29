@@ -20,6 +20,10 @@ const Game = ({ token, games }) => {
   return (
     <div className="gameContainer">
       <div className="gameView" id="test">
+        <div className="gameImage">
+          <img src={game.image} alt="test Image" />
+        </div>
+
         <div className="gameInfo">
           <h1>{game.name}</h1>
           <p>{game.description}</p>

@@ -8,13 +8,17 @@
   left: 55px;
 }
 
+.gameImage img {
+  height: 500px;
+  width: 700px;
+}
+
 .gameView {
   width: 700px;
   min-height: 200px;
   height: auto;
   margin: 10px;
-  border-style: solid;
-  border-color: aqua;
+
   background-color: rgb(22, 21, 21);
 }
 
