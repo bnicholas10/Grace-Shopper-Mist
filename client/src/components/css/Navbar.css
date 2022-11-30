@@ -20,14 +20,14 @@
   left: 50px;
 }
 
-a {
+#navbar a {
   color: white;
   margin-right: 30px;
   text-decoration: none;
   letter-spacing: 3px;
 }
 
-a:hover {
+#navbar a:hover {
   color: silver;
   text-decoration: underline;
   letter-spacing: 5px;

@@ -5,11 +5,19 @@
   flex-direction: column;
   align-items: center;
   color: white;
+  width: 300px;
+  margin: auto;
+  text-align: center;
+  /* background-color: red; */
+}
+
+#loginField h1 {
+  font-family: "Bungee", cursive;
+  text-shadow: 0px 7px 8px grey;
 }
 
 #loginField input {
-  background-color: black;
-  display: block;
+  background-color: transparent;
   color: white;
   outline: none;
   border: none;
@@ -20,24 +28,79 @@
   padding: 5px;
 }
 
-#loginField button {
+#loginField input:focus {
+  color: silver;
+  border-bottom: 2px solid cornflowerblue;
+}
+
+/* #loginField button {
   background-color: black;
-  width: 293px;
-  height: 30px;
+  width: 280px;
+  height: 33px;
+  margin-top: 10px;
+  margin-bottom: 10px;
   font-family: "Roboto", sans-serif;
   color: white;
 }
 
+#loginField button:hover {
+  background-color: rgba(20, 20, 20, 0.5);
+} */
+
+#loginField button {
+  border-radius: 4px;
+  /* background-color: #5ca1e1; */
+  background-color: black;
+  border: none;
+  color: #fff;
+  text-align: center;
+  font-size: 20px;
+  padding: 10px;
+  width: 280px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 10px;
+  box-shadow: 0 10px 20px -8px rgba(0, 0, 0, 0.7);
+}
+
+#loginField button {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+#loginField button:after {
+  content: "»";
+  position: absolute;
+  opacity: 0;
+  top: 9px;
+  right: -20px;
+  transition: 0.5s;
+}
+
+#loginField button:hover {
+  padding-right: 24px;
+  padding-left: 8px;
+  background-color: rgb(80, 80, 80);
+}
+
+#loginField button:hover:after {
+  opacity: 1;
+  right: 10px;
+}
+
 #loginField a {
   color: white;
-  display: block;
-  margin: 10px;
-  position: relative;
-  left: 100px;
+  margin: auto;
+  text-decoration: none;
+  /* background-color: aqua; */
+  font-family: "Bungee", cursive;
 }
 
 #loginField a:hover {
-  color: silver;
+  color: cornflowerblue;
+  letter-spacing: 3px;
 }
 
 #loginField p {
