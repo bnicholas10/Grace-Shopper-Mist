@@ -5,7 +5,7 @@ import "./css/gamesLowerPrice.css";
 
 const GamesLowerPrice = ({ games }) => {
   var filteredGames = games.filter((low) => low.price <= 40);
-  console.log(filteredGames);
+  // console.log(filteredGames);
 
   return (
     <div className="lowerPriced">

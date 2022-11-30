@@ -1,39 +1,100 @@
 #registrationField {
-  display: flex;
   position: relative;
   top: 15vh;
+  display: flex;
   flex-direction: column;
   align-items: center;
   color: white;
+  width: 300px;
+  margin: auto;
+  text-align: center;
+  /* background-color: red; */
+}
+
+#registrationField h1 {
+  font-family: "Bungee", cursive;
+  text-shadow: 0px 7px 8px grey;
 }
 
 #registrationField input {
-  background-color: black;
-  display: block;
+  background-color: transparent;
+  color: white;
+  outline: none;
+  border: none;
+  border-bottom: 2px solid silver;
   margin-bottom: 10px;
   width: 280px;
   height: 40px;
   padding: 5px;
-  color: white;
+  letter-spacing: 4px;
+  font-family: "Syne Mono", monospace;
+  transition: 0.5s;
+}
+
+#registrationField input:focus {
+  color: silver;
+  border-bottom: 2px solid cornflowerblue;
+}
+
+#registrationField input:focus::placeholder {
+  color: transparent;
 }
 
 #registrationField button {
+  border-radius: 4px;
+  /* background-color: #5ca1e1; */
   background-color: black;
-  width: 293px;
-  height: 30px;
-  color: white;
+  border: none;
+  color: #fff;
+  text-align: center;
+  font-size: 20px;
+  padding: 10px;
+  width: 280px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 10px;
+  box-shadow: 0 10px 20px -8px rgba(0, 0, 0, 0.7);
+}
+
+#registrationField button {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+#registrationField button:after {
+  content: "»";
+  position: absolute;
+  opacity: 0;
+  top: 9px;
+  right: -20px;
+  transition: 0.5s;
+}
+
+#registrationField button:hover {
+  padding-right: 24px;
+  padding-left: 8px;
+  background-color: rgb(80, 80, 80);
+}
+
+#registrationField button:hover:after {
+  opacity: 1;
+  right: 10px;
 }
 
 #registrationField a {
   color: white;
-  display: block;
-  margin: 10px;
-  position: relative;
-  left: 100px;
+  margin: auto;
+  text-decoration: none;
+  /* background-color: aqua; */
+  font-family: "Bungee", cursive;
+  transition: 0.25s;
 }
 
 #registrationField a:hover {
-  color: silver;
+  color: cornflowerblue;
+  letter-spacing: 3px;
 }
 
 #registrationField p {

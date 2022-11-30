@@ -2,7 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import "./css/Navbar.css";
 
 const Navbar = (props) => {
-  const { token, setToken, setUser, user } = props;
+  const { token, setToken, setUser, user, setCart } = props;
   const navigate = useNavigate();
 
   const logOut = (e) => {
@@ -10,6 +10,7 @@ const Navbar = (props) => {
     localStorage.removeItem("token");
     setToken("");
     setUser(null);
+    setCart([]);
     navigate("/");
     return;
   };
@@ -32,6 +33,9 @@ const Navbar = (props) => {
             Log Out
           </Link>
         )}
+        <Link to={"/cart"}>
+          <span class="material-symbols-outlined">shopping_cart</span>
+        </Link>
       </div>
     </div>
   );

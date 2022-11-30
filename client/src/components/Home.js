@@ -5,12 +5,6 @@ import "./css/Home.css";
 
 const Home = (props) => {
   const { user } = props;
-  // useEffect(() => {
-  //   const getToken = localStorage.getItem("token") ? true : false;
-  //   console.log("is user logged in:", getToken);
-  //   setIsLoggedIn(getToken);
-  // }, []);
-
   return (
     <div id="home">
       <p id="homeMessage">Mist: Your One Stop Shop For All Things Games</p>

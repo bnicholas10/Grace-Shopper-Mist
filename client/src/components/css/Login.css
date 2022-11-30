@@ -26,6 +26,12 @@
   width: 280px;
   height: 40px;
   padding: 5px;
+  font-family: "Syne Mono", monospace;
+  transition: 0.5s;
+}
+
+#loginField input::placeholder {
+  letter-spacing: 4px;
 }
 
 #loginField input:focus {
@@ -33,19 +39,9 @@
   border-bottom: 2px solid cornflowerblue;
 }
 
-/* #loginField button {
-  background-color: black;
-  width: 280px;
-  height: 33px;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  font-family: "Roboto", sans-serif;
-  color: white;
+#loginField input:focus::placeholder {
+  color: transparent;
 }
-
-#loginField button:hover {
-  background-color: rgba(20, 20, 20, 0.5);
-} */
 
 #loginField button {
   border-radius: 4px;
@@ -96,6 +92,7 @@
   text-decoration: none;
   /* background-color: aqua; */
   font-family: "Bungee", cursive;
+  transition: 0.25s;
 }
 
 #loginField a:hover {

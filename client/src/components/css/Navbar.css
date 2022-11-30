@@ -7,17 +7,34 @@
   width: 100vw;
   padding: 15px;
   box-shadow: 0px 0px 25px white;
+  /* font-family: "Kalam", cursive; */
+  font-family: "Syne Mono", monospace;
+  transition: 0.25s;
 }
 
-/* #navlinks {
-  background-color: aqua;
-} */
+#navbar:hover {
+  box-shadow: 0px 0px 25px cornflowerblue;
+}
+
+#navlinks {
+  display: flex;
+  align-items: center;
+  align-content: center;
+  /* background-color: aqua; */
+  padding: 2px;
+}
 
 #title {
   color: white;
-  font-size: 28px;
+  font-size: 35px;
   position: relative;
   left: 50px;
+  text-shadow: 0px 5px 6px silver;
+  transition: 0.25s;
+}
+
+#title:hover {
+  text-shadow: 0px 5px 6px rgb(255, 0, 53);
 }
 
 #navbar a {
@@ -25,15 +42,16 @@
   margin-right: 30px;
   text-decoration: none;
   letter-spacing: 3px;
+  transition: 0.25s;
 }
 
 #navbar a:hover {
-  color: silver;
-  text-decoration: underline;
+  color: cornflowerblue;
   letter-spacing: 5px;
+  text-shadow: 0px 4px 4px silver;
 }
 
 #adminDashLink {
   position: relative;
-  right: 300px;
+  /* right: 300px; */
 }
