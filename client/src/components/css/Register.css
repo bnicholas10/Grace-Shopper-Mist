@@ -26,9 +26,12 @@
   width: 280px;
   height: 40px;
   padding: 5px;
-  letter-spacing: 4px;
   font-family: "Syne Mono", monospace;
   transition: 0.5s;
+}
+
+#registrationField input::placeholder {
+  letter-spacing: 4px;
 }
 
 #registrationField input:focus {

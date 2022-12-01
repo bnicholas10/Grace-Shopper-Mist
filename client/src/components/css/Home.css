@@ -28,6 +28,7 @@
   color: rgba(255, 255, 255, 0.5);
   position: relative;
   bottom: 120px;
+  font-family: "Syne Mono", monospace;
 }
 
 #signature {

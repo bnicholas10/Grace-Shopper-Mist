@@ -35,7 +35,7 @@ const Login = (props) => {
     <div id="loginField">
       <h1 id="loginText">Log In</h1>
       <form onSubmit={handleSubmit}>
-        <div class="form__group field">
+        <div className="form__group field">
           <input
             type={"input"}
             placeholder="Username *"
@@ -47,7 +47,7 @@ const Login = (props) => {
             Username *
           </label> */}
         </div>
-        <div class="form__group field">
+        <div className="form__group field">
           <input
             type="password"
             placeholder="Password *"

@@ -5,8 +5,19 @@
   align-items: center;
   color: white;
   height: 100vh;
+  font-family: "Bungee", cursive;
 }
 
-#MissingPage p {
-  margin-bottom: 25px;
+#MissingPage a {
+  color: white;
+  margin-right: 30px;
+  text-decoration: none;
+  letter-spacing: 3px;
+  transition: 0.25s;
+}
+
+#MissingPage a:hover {
+  color: cornflowerblue;
+  letter-spacing: 5px;
+  /* text-shadow: 0px 4px 4px silver; */
 }

@@ -47,7 +47,7 @@ const App = () => {
       return;
     }
     const cartItems = await fetchCart(token);
-    console.log("CART ITEMS: ", cartItems.data);
+    // console.log("CART ITEMS: ", cartItems.data);
     setCart(cartItems.data);
   };
 
@@ -111,11 +111,15 @@ const App = () => {
         />
         <Route
           path={"/games/:gameId/*"}
-          element={<Game token={token} games={games} />}
+          element={
+            <Game token={token} games={games} user={user} setCart={setCart} />
+          }
         />
         <Route
           path={"/cart"}
-          element={<Cart cart={cart} setCart={setCart} user={user} />}
+          element={
+            <Cart cart={cart} setCart={setCart} user={user} token={token} />
+          }
         />
         <Route path={"*"} element={<NotFound />} />
       </Routes>

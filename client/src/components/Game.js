@@ -1,16 +1,29 @@
-import { Route, Routes, useParams, Link } from "react-router-dom";
+import { Route, Routes, useParams, Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { fetchGameById } from "../api";
+import { addToCart, fetchCart, fetchGameById } from "../api";
 import "./css/Game.css";
 
-const Game = ({ token, games }) => {
+const Game = ({ token, games, user, setCart }) => {
   const params = useParams();
   const [game, setGame] = useState([]);
+  const navigate = useNavigate();
 
   const loadGame = async (gameId) => {
     const gameInfo = await fetchGameById(gameId);
     // console.log(gameInfo);
     setGame(gameInfo.data);
+  };
+
+  const handleaddToCart = async (e) => {
+    e.preventDefault();
+    const result = await addToCart(game.id, user.id);
+    if (!result) {
+      console.log("something went wrong");
+    } else {
+      const cartItems = await fetchCart(token);
+      setCart(cartItems.data);
+      navigate("/cart");
+    }
   };
 
   useEffect(() => {
@@ -47,6 +60,9 @@ const Game = ({ token, games }) => {
             </div>
           </div>
         </div>
+        <button id="addToCart" onClick={handleaddToCart}>
+          Add to Cart
+        </button>
       </div>
     </div>
   );

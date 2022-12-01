@@ -1,16 +1,17 @@
 .gameContainer {
   display: flex;
-
   justify-content: center;
   color: white;
-  position: relative;
+  /* position: relative;
   top: 100px;
-  left: 55px;
+  left: 55px; */
+  padding-top: 80px;
 }
 
 .gameImage img {
   height: 500px;
   width: 700px;
+  object-fit: fill;
 }
 
 .gameView {
@@ -18,7 +19,6 @@
   min-height: 200px;
   height: auto;
   margin: 10px;
-
   background-color: rgb(22, 21, 21);
 }
 
@@ -41,5 +41,8 @@ h3 {
 
   display: flex;
   justify-content: space-around;
-  justify-items: start;
+}
+
+#addToCart {
+  float: right;
 }

@@ -101,9 +101,46 @@ export const fetchCart = async (token) => {
 
     const result = await response.json();
 
-    // console.log(result);
     return result;
   } catch (error) {
     throw error;
+  }
+};
+
+export const addToCart = async (gameId, userId) => {
+  try {
+    const response = await fetch(`${BASE_URL}/cart`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        gameId,
+        userId,
+      }),
+    });
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const deleteFromCart = async (token, cartId) => {
+  try {
+    const response = await fetch(`${BASE_URL}/cart`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        cartId,
+      }),
+    });
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    console.error(error);
   }
 };
