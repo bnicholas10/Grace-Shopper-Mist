@@ -4,13 +4,30 @@ const getCartByUserId = async (id) => {
   try {
     const { rows: cart } = await client.query(
       `
-      SELECT * FROM cart WHERE "userId" = $1;
+      SELECT cart.id AS "cartId", cart.*, games.* FROM cart JOIN games ON cart."gameId"=games.id WHERE cart."userId"=$1 AND cart.purchased = false;
       `,
       [id]
     );
     return cart;
   } catch (error) {
     console.log("Error with getCartByUserId...");
+    throw error;
+  }
+};
+
+const getCartItemById = async (cartId) => {
+  try {
+    const {
+      rows: [item],
+    } = await client.query(
+      `
+    SELECT * FROM cart WHERE id = $1;
+    `,
+      [cartId]
+    );
+    return item;
+  } catch (error) {
+    console.log("Error with getCartItemById");
     throw error;
   }
 };
@@ -36,7 +53,7 @@ const removeFromCart = async (id) => {
   try {
     const { rows: result } = await client.query(
       `
-            DELETE FROM cart WHERE id = $1;
+            DELETE FROM cart WHERE id = $1 AND cart.purchased=false RETURNING *;
         `,
       [id]
     );
@@ -85,4 +102,5 @@ module.exports = {
   removeFromCart,
   updateCart,
   clearCart,
+  getCartItemById,
 };

@@ -1,6 +1,5 @@
 const express = require("express");
 const usersRouter = express.Router();
-//const userRouter = express.Router();
 const jwt = require("jsonwebtoken");
 const { requireUser } = require("./utilities");
 const {
@@ -89,6 +88,13 @@ usersRouter.post("/register", async (req, res, next) => {
   try {
     const { name, username, email, password } = req.body;
     const queriedUser = await getUserByUsername(username);
+    const queriedUserByEmail = await getUserByEmail(email);
+    if (queriedUserByEmail) {
+      res.send({
+        name: "Email in Use",
+        message: "That email is already registered",
+      });
+    }
     if (queriedUser) {
       res.send({
         name: "UserExistsError",
@@ -120,13 +126,10 @@ usersRouter.post("/register", async (req, res, next) => {
         isAdmin: false,
       });
       if (!user) {
-        next({
-          success: false,
-          error: {
-            name: "UserCreationError",
-            message:
-              "There was a problem registering you. Please try again in a few minutes.",
-          },
+        res.send({
+          name: "UserCreationError",
+          message:
+            "There was a problem registering you. Please try again in a few minutes.",
         });
       } else {
         const token = jwt.sign(
@@ -134,10 +137,7 @@ usersRouter.post("/register", async (req, res, next) => {
           JWT_SECRET,
           { expiresIn: "2w" }
         );
-        res.send({
-          success: true,
-          data: { user, message: "You're signed up!", token },
-        });
+        res.send({ user, message: "You're signed up!", token });
       }
     }
   } catch (error) {

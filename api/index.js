@@ -4,6 +4,7 @@ const reviewsRouter = require("./reviews");
 const jwt = require("jsonwebtoken");
 const usersRouter = require("./users");
 const { getUserById } = require("../db/users");
+const cartRouter = require("./cart");
 const { JWT_SECRET } = process.env;
 
 const apiRouter = express.Router();
@@ -35,6 +36,7 @@ apiRouter.use(async (req, res, next) => {
 apiRouter.use("/games", gamesRouter);
 apiRouter.use("/reviews", reviewsRouter);
 apiRouter.use("/users", usersRouter);
+apiRouter.use("/cart", cartRouter);
 
 apiRouter.use("*", (req, res, next) => {
   res.status(404).send({ Error: "404", message: "Not found" });
