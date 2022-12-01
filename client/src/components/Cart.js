@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { deleteFromCart, fetchCart } from "../api";
 import "./css/Cart.css";
 
@@ -27,9 +27,9 @@ const Cart = (props) => {
       {cart.map((game, i) => {
         return (
           <div key={i} className="gameCard">
-            <img src={game.image} alt="test Image" />
-            <div>
-              <h3>{game.name}</h3>
+            <img src={game.image} alt="Image" />
+            <div id="cartGameInfo">
+              <Link to={`/games/${game.id}`}>{game.name}</Link>
               <p>Publisher: {game.publisher}</p>
               <p>Rating: {game.rating}</p>
               <p>${game.price}</p>
