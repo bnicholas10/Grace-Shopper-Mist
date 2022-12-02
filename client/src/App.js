@@ -119,8 +119,6 @@ const App = () => {
               setGames={setGames}
               user={user}
               setCart={setCart}
-              edit={edit}
-              setEdit={setEdit}
             />
           }
         />
@@ -137,7 +135,6 @@ const App = () => {
               token={token}
               setToken={setToken}
               user={user}
-              edit={edit}
               setGames={setGames}
             />
           }

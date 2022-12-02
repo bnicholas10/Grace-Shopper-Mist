@@ -61,7 +61,7 @@ const Games = ({ token, games }) => {
                 <a href={`/games/${game.id}`}>
                   <div className="content">
                     <div className="contentLeft">
-                      <img src={game.image} alt="test Image" />
+                      <img src={game.image} alt="test" />
                       <h5>{game.name}</h5>
                     </div>
 

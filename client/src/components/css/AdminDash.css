@@ -13,8 +13,8 @@
 }
 
 .authError {
-  margin-left: auto;
-  margin-right: auto;
+  display: flex;
+  justify-content: center;
   font-family: "Bungee", cursive;
   text-shadow: 0px 7px 8px grey;
   /* background-color: red; */

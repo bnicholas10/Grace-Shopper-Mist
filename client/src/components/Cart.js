@@ -1,12 +1,21 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { deleteFromCart, fetchCart } from "../api";
 import "./css/Cart.css";
 
 const Cart = (props) => {
   const { cart, setCart, user, token } = props;
-  const [total, setTotal] = useState(0);
+  // const [total, setTotal] = useState(0.0);
   const navigate = useNavigate();
+
+  const handleFetchCart = async (token) => {
+    if (!token) {
+      return;
+    }
+    const cartItems = await fetchCart(token);
+    // console.log("CART ITEMS: ", cartItems.data);
+    setCart(cartItems.data);
+  };
 
   const handleDeleteFromCart = async (e, cartId) => {
     e.preventDefault();
@@ -21,6 +30,15 @@ const Cart = (props) => {
     }
   };
 
+  useEffect(() => {
+    handleFetchCart(token);
+  }, [token]);
+
+  let total = 0;
+  for (let game of cart) {
+    total = total + +game.price;
+  }
+
   return (
     <div id="userCart">
       {user ? <h1>{user.username}'s Cart</h1> : <h1>Cart</h1>}
@@ -28,6 +46,7 @@ const Cart = (props) => {
         return (
           <div key={i} className="gameCard">
             <img src={game.image} alt="Image" />
+
             <div id="cartGameInfo">
               <Link to={`/games/${game.id}`}>{game.name}</Link>
               <p>Publisher: {game.publisher}</p>

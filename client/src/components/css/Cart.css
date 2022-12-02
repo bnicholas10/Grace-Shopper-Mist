@@ -23,7 +23,7 @@
   flex-direction: row;
   justify-content: space-between;
   box-shadow: 0px 0px 10px 3px silver;
-  width: 650px;
+  width: 675px;
   padding: 35px;
   margin-bottom: 15px;
   border-radius: 10px;
@@ -37,7 +37,7 @@
 
 .gameCard img {
   height: 150px;
-  width: 150px;
+  width: 155px;
   scale: 1.2;
 }
 
@@ -87,20 +87,19 @@
 #cartGameInfo {
   display: flex;
   flex-direction: column;
-  /* font-family: "Bungee", cursive; */
-  /* font-family: "Kalam", cursive; */
+  width: 275px;
   font-family: "Syne Mono", monospace;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 #cartGameInfo a {
   color: white;
-  margin: auto;
+  /* margin: auto; */
   text-decoration: none;
   transition: 0.25s;
 }
 
 #cartGameInfo a:hover {
   color: rgb(255, 0, 53);
-  letter-spacing: 1px;
+  /* letter-spacing: 1px; */
 }

@@ -10,8 +10,8 @@ const Home = (props) => {
       <p id="homeMessage">Mist: Your One Stop Shop For All Things Games</p>
       {user && <p id="homeUser">Logged in as: {user.username}</p>}
       <p id="signature">
-        Created By: Bernie Pereda, Devin Dodd, Diana Clemente, and Brett
-        Nicholas
+        Created By: Bernie Pereda, Brett Nicholas, Diana Clemente, and Devin
+        Dodd
       </p>
     </div>
   );
