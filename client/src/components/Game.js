@@ -7,7 +7,6 @@ const Game = ({ token, games, user, setCart }) => {
   const params = useParams();
   const [game, setGame] = useState([]);
   const navigate = useNavigate();
-
   const loadGame = async (gameId) => {
     const gameInfo = await fetchGameById(gameId);
     // console.log(gameInfo);
