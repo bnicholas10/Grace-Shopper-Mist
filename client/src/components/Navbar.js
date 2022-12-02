@@ -34,7 +34,7 @@ const Navbar = (props) => {
           </Link>
         )}
         <Link to={"/cart"}>
-          <span class="material-symbols-outlined">shopping_cart</span>
+          <span className="material-symbols-outlined">shopping_cart</span>
         </Link>
       </div>
     </div>
