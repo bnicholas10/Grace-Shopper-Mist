@@ -85,9 +85,9 @@ gamesRouter.post("/", async (req, res, next) => {
 gamesRouter.patch("/:gameId", async (req, res, next) => {
   const user = req.user;
   const { gameId } = req.params;
-  // const { name, price, publisher, description, rating, category, image } =
-  //   req.body;
-  const body = req.body;
+  const { name, price, publisher, description, rating, category, image } =
+    req.body;
+  // const body = req.body;
   try {
     if (!gameId) {
       res.send({
@@ -95,11 +95,19 @@ gamesRouter.patch("/:gameId", async (req, res, next) => {
         error: { name: "Game not found", message: "No game with that ID" },
       });
     }
-    if (user.isAdmin) {
+
+    if (user.isAdmin === true) {
       const result = await updateGame({
-        id: gameId,
-        ...body,
+        gameId,
+        name,
+        price,
+        publisher,
+        description,
+        rating,
+        category,
+        image,
       });
+
       if (!result) {
         res.send({
           success: false,

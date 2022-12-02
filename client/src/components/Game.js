@@ -4,13 +4,12 @@ import { addToCart, fetchCart, fetchGameById } from "../api";
 import EditGame from "./EditGame";
 import "./css/Game.css";
 
-const Game = ({ token, games, user, setCart }) => {
+const Game = ({ token, games, user, setCart, setGames }) => {
   const params = useParams();
   const [game, setGame] = useState([]);
   const navigate = useNavigate();
   const [clicked, setClicked] = useState(false);
   const [display, setDisplay] = useState(true);
-  const [admin, setAdmin] = useState();
 
   const loadGame = async (gameId) => {
     const gameInfo = await fetchGameById(gameId);
@@ -80,7 +79,7 @@ const Game = ({ token, games, user, setCart }) => {
       ) : null}
       {user && user.isAdmin === true && clicked === true ? (
         <div>
-          <EditGame user={user} game={game} />
+          <EditGame user={user} game={game} token={token} setGames={setGames} />
         </div>
       ) : null}
     </div>

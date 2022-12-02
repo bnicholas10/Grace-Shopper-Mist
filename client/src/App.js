@@ -108,12 +108,20 @@ const App = () => {
         <Route path={"/profile"} element={<UserProfile />} />
         <Route
           path={"/games"}
-          element={<Games token={token} games={games} />}
+          element={<Games token={token} games={games} setGames={setGames} />}
         />
         <Route
           path={"/games/:gameId/*"}
           element={
-            <Game token={token} games={games} user={user} setCart={setCart} />
+            <Game
+              token={token}
+              games={games}
+              setGames={setGames}
+              user={user}
+              setCart={setCart}
+              edit={edit}
+              setEdit={setEdit}
+            />
           }
         />
         <Route
@@ -129,7 +137,8 @@ const App = () => {
               token={token}
               setToken={setToken}
               user={user}
-              games={games}
+              edit={edit}
+              setGames={setGames}
             />
           }
         />
