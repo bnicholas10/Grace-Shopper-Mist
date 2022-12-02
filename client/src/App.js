@@ -3,7 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import { fetchCart, fetchGames, fetchUser } from "./api";
 // import "./index.css";
 import Games from "./components/Games";
-import GamesForm from "./components/GamesForm";
+import EditGame from "./components/EditGame";
 import Game from "./components/Game";
 import Home from "./components/Home";
 import Login from "./components/Login";
@@ -86,6 +86,7 @@ const App = () => {
               setToken={setToken}
               user={user}
               setUser={setUser}
+              games={games}
             />
           }
         />
@@ -119,6 +120,17 @@ const App = () => {
           path={"/cart"}
           element={
             <Cart cart={cart} setCart={setCart} user={user} token={token} />
+          }
+        />
+        <Route
+          path={"/editgame/:gameId/*"}
+          element={
+            <EditGame
+              token={token}
+              setToken={setToken}
+              user={user}
+              games={games}
+            />
           }
         />
         <Route path={"*"} element={<NotFound />} />

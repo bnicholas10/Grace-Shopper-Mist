@@ -104,31 +104,66 @@ async function createGame({
   }
 }
 
-async function updateGame(gameId, fields = {}) {
-  // build the set string
-  const setString = Object.keys(fields)
-    .map((key, index) => `"${key}"=$${index + 1}`)
-    .join(", ");
-
+async function updateGame({
+  gameId,
+  name,
+  price,
+  publisher,
+  description,
+  rating,
+  category,
+  image,
+}) {
   try {
-    // update any fields that need to be updated
-    if (setString.length > 0) {
-      await client.query(
-        `
-        UPDATE games
-        SET ${setString}
-        WHERE id=${gameId}
-        RETURNING *;
+    const {
+      rows: [game],
+    } = await client.query(
+      `
+      UPDATE games
+      SET "isPublic"=COALESCE($2, routines."isPublic"),
+      name = COALESCE($3, name),
+      price = COALESCE($4, price),
+      publisher = COALESCE($5, publisher),
+      description = COALESCE($6, description),
+      rating = COALESCE($7, rating),
+      category = COALESCE($8, category),
+      image = COALESCE($9, image)
+      WHERE id=$1
+      RETURNING*;
       `,
-        Object.values(fields)
-      );
-    }
-
-    return await getGameById(gameId);
+      [gameId, name, price, publisher, description, rating, category, image]
+    );
+    return game;
   } catch (error) {
     throw error;
   }
 }
+
+// async function updateGame(gameId, fields = {}) {
+//   // build the set string
+//   const setString = Object.keys(fields)
+//     .map((key, index) => `"${key}"=$${index + 1}`)
+//     .join(", ");
+
+//   try {
+//     // update any fields that need to be updated
+//     if (setString.length > 0) {
+//       await client.query(
+//         `
+//         UPDATE games
+//         SET ${setString}
+//         WHERE id=${gameId}
+//         RETURNING *;
+//       `,
+//         Object.values(fields)
+//       );
+//     }
+
+//     return await getGameById(gameId);
+//   } catch (error) {
+//     throw error;
+//   }
+// }
 
 async function deleteGame(gameId) {
   try {

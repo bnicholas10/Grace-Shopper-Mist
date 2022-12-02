@@ -4,9 +4,14 @@ import "./css/AdminDashNav.css";
 const AdminDashNav = () => {
   return (
     <div id="AdminDashNavBar">
-      <Link>User Management</Link>
-      <Link>Add Game</Link>
-      <Link>Edit/Remove Game</Link>
+      <div className="topBar">
+        <div>
+          <Link>User Management</Link>
+        </div>
+        <div>
+          <Link>Game Management</Link>
+        </div>
+      </div>
     </div>
   );
 };

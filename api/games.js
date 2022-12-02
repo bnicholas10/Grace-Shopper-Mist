@@ -85,8 +85,9 @@ gamesRouter.post("/", async (req, res, next) => {
 gamesRouter.patch("/:gameId", async (req, res, next) => {
   const user = req.user;
   const { gameId } = req.params;
-  const { name, price, publisher, description, rating, category, image } =
-    req.body;
+  // const { name, price, publisher, description, rating, category, image } =
+  //   req.body;
+  const body = req.body;
   try {
     if (!gameId) {
       res.send({
@@ -96,13 +97,8 @@ gamesRouter.patch("/:gameId", async (req, res, next) => {
     }
     if (user.isAdmin) {
       const result = await updateGame({
-        name,
-        price,
-        publisher,
-        description,
-        rating,
-        category,
-        image,
+        id: gameId,
+        ...body,
       });
       if (!result) {
         res.send({

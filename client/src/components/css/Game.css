@@ -46,3 +46,18 @@ h3 {
 #addToCart {
   float: right;
 }
+
+.addToCart {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px;
+}
+
+.addToCart button {
+  background-color: black;
+  color: white;
+  border-style: solid;
+  height: 40px;
+  width: 140px;
+}

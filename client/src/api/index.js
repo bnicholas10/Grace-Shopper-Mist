@@ -144,3 +144,54 @@ export const deleteFromCart = async (token, cartId) => {
     console.error(error);
   }
 };
+
+export const deleteGameFunc = async (gameId, token) => {
+  try {
+    const response = await fetch(`${BASE_URL}/games/${gameId}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const editGameFunc = async (
+  gameId,
+  name,
+  price,
+  publisher,
+  description,
+  rating,
+  category,
+  image
+) => {
+  try {
+    console.log(gameId);
+    const response = await fetch(`${BASE_URL}/games/${gameId}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name,
+        price,
+        publisher,
+        description,
+        rating,
+        category,
+        image,
+      }),
+    });
+    // const result = await response.json();
+    console.log(response.json());
+    return response;
+  } catch (error) {
+    throw error;
+  }
+};
