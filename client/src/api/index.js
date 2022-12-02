@@ -169,14 +169,16 @@ export const editGameFunc = async (
   description,
   rating,
   category,
-  image
+  image,
+  user,
+  token
 ) => {
   try {
-    console.log(gameId);
     const response = await fetch(`${BASE_URL}/games/${gameId}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({
         name,
@@ -188,9 +190,9 @@ export const editGameFunc = async (
         image,
       }),
     });
-    // const result = await response.json();
-    console.log(response.json());
-    return response;
+    const result = await response.json();
+    console.log(result);
+    return result;
   } catch (error) {
     throw error;
   }

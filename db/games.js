@@ -120,14 +120,14 @@ async function updateGame({
     } = await client.query(
       `
       UPDATE games
-      SET "isPublic"=COALESCE($2, routines."isPublic"),
-      name = COALESCE($3, name),
-      price = COALESCE($4, price),
-      publisher = COALESCE($5, publisher),
-      description = COALESCE($6, description),
-      rating = COALESCE($7, rating),
-      category = COALESCE($8, category),
-      image = COALESCE($9, image)
+      SET 
+      name = COALESCE($2, name),
+      price = COALESCE($3, price),
+      publisher = COALESCE($4, publisher),
+      description = COALESCE($5, description),
+      rating = COALESCE($6, rating),
+      category = COALESCE($7, category),
+      image = COALESCE($8, image)
       WHERE id=$1
       RETURNING*;
       `,

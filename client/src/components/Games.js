@@ -30,9 +30,6 @@ const Games = ({ token, games }) => {
   return (
     <div className="gamesContainer">
       <h1>Games</h1>
-      <button>
-        <Link to={"/Login"}>Login</Link>
-      </button>
 
       <div className="navbar">
         <div className="navbarSearch">
