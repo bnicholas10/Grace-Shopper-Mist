@@ -43,9 +43,6 @@ const Login = (props) => {
             onChange={(event) => setUsername(event.target.value)}
             id="username"
           />
-          {/* <label for="username" class="form__label">
-            Username *
-          </label> */}
         </div>
         <div className="form__group field">
           <input
@@ -55,9 +52,6 @@ const Login = (props) => {
             onChange={(event) => setPassword(event.target.value)}
             id="password"
           />
-          {/* <label for="password" class="form__label">
-            Password *
-          </label> */}
         </div>
         <button type="submit">Log In</button>
         <Link to={"/register"}>Sign up</Link>
