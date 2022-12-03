@@ -1,6 +1,6 @@
 import { useEffect, useState, Link } from "react";
 import { Routes, Route } from "react-router-dom";
-import { fetchCart, fetchGames, fetchUser } from "./api";
+import { fetchCart, fetchCartandPurchased, fetchGames, fetchUser } from "./api";
 // import "./index.css";
 import Games from "./components/Games";
 import EditGame from "./components/EditGame";
@@ -20,6 +20,7 @@ const App = () => {
   const [token, setToken] = useState("");
   const [games, setGames] = useState([]);
   const [cart, setCart] = useState([]);
+  const [purchased, setPurchased] = useState([]);
 
   const checkToken = () => {
     if (token === "" && localStorage.getItem("token")) {
@@ -43,19 +44,21 @@ const App = () => {
     setGames(allGames.data);
   };
 
-  const handleFetchCart = async (token) => {
+  const handleFetchCartandPurchased = async (token) => {
     if (!token) {
       return;
     }
-    const cartItems = await fetchCart(token);
-    // console.log("CART ITEMS: ", cartItems.data);
-    setCart(cartItems.data);
+    const result = await fetchCartandPurchased(token);
+    console.log("fetchCartandPurchased: ", result.data);
+    setCart(result.data.cartItems);
+    setPurchased(result.data.purchasedItems);
   };
 
   useEffect(() => {
     handleFetchUser(token);
     handleFetchGames();
-    handleFetchCart(token);
+    handleFetchCartandPurchased(token);
+    console.log(purchased, cart);
   }, [token]);
 
   return (
@@ -106,7 +109,17 @@ const App = () => {
           path={"/register"}
           element={<Register setToken={setToken} setUser={setUser} />}
         />
-        <Route path={"/profile"} element={<UserProfile />} />
+        <Route
+          path={"/profile"}
+          element={
+            <UserProfile
+              user={user}
+              setUser={setUser}
+              purchased={purchased}
+              token={token}
+            />
+          }
+        />
         <Route
           path={"/games"}
           element={<Games token={token} games={games} setGames={setGames} />}
@@ -132,7 +145,14 @@ const App = () => {
         />
         <Route
           path={"/cart/checkout"}
-          element={<Checkout cart={cart} setCart={setCart} token={token} />}
+          element={
+            <Checkout
+              cart={cart}
+              setCart={setCart}
+              setPurchased={setPurchased}
+              token={token}
+            />
+          }
         />
         <Route
           path={"/editgame/:gameId/*"}

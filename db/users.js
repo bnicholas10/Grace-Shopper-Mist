@@ -140,6 +140,28 @@ async function getUserByEmail(email) {
   }
 }
 
+async function updateUser(id, fields) {
+  try {
+    for (let key in fields) {
+      await client.query(`
+      UPDATE users SET ${key} = ${fields[key]} WHERE id = ${id};
+      `);
+    }
+
+    const {
+      rows: [user],
+    } = await client.query(
+      `
+      SELECT * FROM users WHERE id = $1;
+    `,
+      [id]
+    );
+    return user;
+  } catch (error) {
+    throw error;
+  }
+}
+
 module.exports = {
   createUser,
   getUser,

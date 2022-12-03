@@ -3,14 +3,10 @@ const usersRouter = express.Router();
 const jwt = require("jsonwebtoken");
 const { requireUser } = require("./utilities");
 const {
-  getAllUsers,
   createUser,
-  editEmail,
   getUserByUsername,
   getUserById,
   getUser,
-  getAllCompletedOrdersByUserId,
-  getAllCheckoutsByUserId,
   getUserByEmail,
 } = require("../db/users");
 
@@ -65,18 +61,19 @@ usersRouter.post("/login", async (req, res, next) => {
 
 // PATCH /api/users/me
 usersRouter.patch("/me", requireUser, async (req, res, next) => {
+  const user = req.user;
+  const { email, password, name } = req.body;
+  const fields = {};
+
   try {
-    if (!req.body.email) {
-      next({
-        name: "IncorrectEmailError",
-        message: "Please enter a valid email address.",
-      });
-    } else {
-      const editedEmail = await editEmail({
-        email: req.body.email,
-        userId: req.body.userId,
-      });
-      res.send(editedEmail);
+    if (email) {
+      fields.email = email;
+    }
+    if (password) {
+      fields.password = password;
+    }
+    if (name) {
+      fields.name = name;
     }
   } catch (error) {
     next(error);

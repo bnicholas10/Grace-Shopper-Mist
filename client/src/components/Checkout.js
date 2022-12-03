@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { fetchCart, purchaseCart } from "../api";
+import { fetchCartandPurchased, purchaseCart } from "../api";
 import "./css/Checkout.css";
 
 const Checkout = (props) => {
-  const { cart, setCart, token } = props;
+  const { cart, setCart, setPurchased, token } = props;
   const navigate = useNavigate();
   const [contactInfo, setContactInfo] = useState({
     firstName: "",
@@ -33,15 +33,6 @@ const Checkout = (props) => {
   for (let game of cart) {
     total = total + +game.price;
   }
-
-  //   if (
-  //     Object.values(contactInfo).every((item) => item.length > 2) &&
-  //     Object.values(billingInfo).every((item) => item.length > 2)
-  //   ) {
-  //     console.log("Works as intended");
-  //   } else {
-  //     console.log("Something is missing");
-  //   }
 
   const handleFieldClear = () => {
     setContactInfo({
@@ -82,8 +73,9 @@ const Checkout = (props) => {
       }, 2000);
       setTimeout(async () => {
         setMessage("");
-        const cartItems = await fetchCart(token);
-        setCart(cartItems.data);
+        const result = await fetchCartandPurchased(token);
+        setCart(result.data.cartItems);
+        setPurchased(result.data.purchasedItems);
       }, 2100);
     } else {
       setError("Please fill out all fields");

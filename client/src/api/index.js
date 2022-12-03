@@ -56,6 +56,24 @@ export const fetchUser = async (token) => {
   }
 };
 
+export const updateUser = async (token, fields) => {
+  try {
+    const response = await fetch(`${BASE_URL}/users/me`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(fields),
+    });
+    const result = await response.json();
+
+    return result;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 export const fetchGames = async () => {
   try {
     const response = await fetch(`${BASE_URL}/games`, {
@@ -90,7 +108,7 @@ export const fetchGameById = async (gameId) => {
   }
 };
 
-export const fetchCart = async (token) => {
+export const fetchCartandPurchased = async (token) => {
   try {
     const response = await fetch(`${BASE_URL}/cart`, {
       headers: {

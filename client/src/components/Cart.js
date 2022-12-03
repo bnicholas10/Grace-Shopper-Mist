@@ -1,20 +1,19 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { deleteFromCart, fetchCart } from "../api";
+import { deleteFromCart, fetchCartandPurchased } from "../api";
 import "./css/Cart.css";
 
 const Cart = (props) => {
   const { cart, setCart, user, token } = props;
-  // const [total, setTotal] = useState(0.0);
   const navigate = useNavigate();
 
   const handleFetchCart = async (token) => {
     if (!token) {
       return;
     }
-    const cartItems = await fetchCart(token);
+    const result = await fetchCartandPurchased(token);
     // console.log("CART ITEMS: ", cartItems.data);
-    setCart(cartItems.data);
+    setCart(result.data.cartItems);
   };
 
   const handleDeleteFromCart = async (e, cartId) => {
@@ -24,8 +23,8 @@ const Cart = (props) => {
     if (!item || !item.success) {
       console.log("something went wrong");
     } else {
-      const cartItems = await fetchCart(token);
-      setCart(cartItems.data);
+      const result = await fetchCartandPurchased(token);
+      setCart(result.data.cartItems);
       navigate("/cart");
     }
   };

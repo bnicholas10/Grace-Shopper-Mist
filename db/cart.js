@@ -15,6 +15,21 @@ const getCartByUserId = async (id) => {
   }
 };
 
+const getPurchasedByUserId = async (id) => {
+  try {
+    const { rows: cart } = await client.query(
+      `
+      SELECT cart.id AS "cartId", cart.*, games.* FROM cart JOIN games ON cart."gameId"=games.id WHERE cart."userId"=$1 AND cart.purchased = true;
+      `,
+      [id]
+    );
+    return cart;
+  } catch (error) {
+    console.log("Error with getPurchasedByUserId...");
+    throw error;
+  }
+};
+
 const getCartItemById = async (cartId) => {
   try {
     const {
@@ -132,6 +147,7 @@ const clearCart = async (userId) => {
 
 module.exports = {
   getCartByUserId,
+  getPurchasedByUserId,
   addToCart,
   removeFromCart,
   updateCart,

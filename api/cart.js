@@ -10,6 +10,7 @@ const {
   getCartItemById,
   checkCart,
   checkPurchased,
+  getPurchasedByUserId,
 } = require("../db/cart");
 
 const { JWT_SECRET } = process.env;
@@ -28,7 +29,8 @@ cartRouter.get("/", async (req, res, next) => {
       });
     } else {
       const cartItems = await getCartByUserId(user.id);
-      res.send({ success: true, data: cartItems });
+      const purchasedItems = await getPurchasedByUserId(user.id);
+      res.send({ success: true, data: { cartItems, purchasedItems } });
     }
   } catch (error) {
     next(error);

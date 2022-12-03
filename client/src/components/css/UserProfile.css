@@ -1,10 +1,188 @@
+#profilePage {
+  display: flex;
+  padding-top: 85px;
+  color: white;
+  /* font-family: "Syne Mono", monospace; */
+  font-family: "Bungee", cursive;
+}
+
+#profileLoginMessage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  height: 70vh;
+}
+
+#profileLoginMessage h1 {
+  text-shadow: 0px 7px 8px grey;
+}
+
+#profileLoginMessage a {
+  color: white;
+  margin-right: 30px;
+  text-decoration: none;
+  letter-spacing: 3px;
+  transition: 0.25s;
+  text-shadow: none;
+}
+
+#profileLoginMessage a:hover {
+  color: cornflowerblue;
+  letter-spacing: 5px;
+}
+
 #userProfile {
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: auto;
+  /* background-color: red; */
+  height: 90vh;
+  width: 100vw;
 }
 
 #userProfile h1 {
+  text-shadow: 0px 7px 8px grey;
+  align-self: center;
+}
+
+#contentParent {
+  display: flex;
+  justify-content: space-between;
+}
+
+.profileContent {
+  flex: 1;
+  margin: 0 85px;
+}
+
+#purchases {
+  display: flex;
+  flex-direction: column;
+}
+
+#purchases h1 {
+  transition: 0.25s;
+}
+
+#purchases h1:hover {
+  text-shadow: 0px 5px 6px cornflowerblue;
+}
+
+.purchasedGameCard {
+  /* background-color: red; */
+  display: flex;
+  justify-content: space-between;
+  box-shadow: 0px 0px 10px 3px silver;
+  width: 500px;
+  padding-top: 35px;
+  padding-left: 35px;
+  padding-bottom: 35px;
+  padding-right: 10px;
+  margin-bottom: 15px;
+  border-radius: 10px;
+  transition: 0.25s;
+}
+
+.purchasedGameCard:hover {
+  box-shadow: 0px 0px 10px 3px cornflowerblue;
+}
+
+.purchasedGameCard img {
+  height: 150px;
+  width: 155px;
+  scale: 1.2;
+}
+
+#editUser {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+}
+
+#editUser h1 {
+  transition: 0.25s;
+}
+
+#editUser h1:hover {
+  text-shadow: 0px 5px 6px rgb(255, 0, 53);
+}
+
+#editUser form {
+  /* background-color: red; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#editUser input {
+  background-color: transparent;
   color: white;
+  outline: none;
+  border: none;
+  border-bottom: 2px solid silver;
+  margin-bottom: 10px;
+  width: 225px;
+  height: 40px;
+  padding: 5px;
+  font-family: "Syne Mono", monospace;
+  transition: 0.5s;
+}
+
+#editUser input::placeholder {
+  letter-spacing: 4px;
+}
+
+#editUser input:focus {
+  color: silver;
+  border-bottom: 2px solid cornflowerblue;
+}
+
+#editUser input:focus::placeholder {
+  color: transparent;
+}
+
+#editUser button {
+  border-radius: 4px;
+  /* background-color: #5ca1e1; */
+  background-color: black;
+  border: none;
+  color: #fff;
+  text-align: center;
+  font-size: 20px;
+  padding: 10px;
+  width: 175px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 10px;
+  box-shadow: 0 10px 20px -8px rgba(0, 0, 0, 0.7);
+}
+
+#editUser button {
+  cursor: pointer;
+  display: inline-block;
   position: relative;
-  top: 100px;
-  left: 55px;
+  transition: 0.5s;
+}
+
+#editUser button:after {
+  content: "»";
+  position: absolute;
+  opacity: 0;
+  top: 9px;
+  right: -20px;
+  transition: 0.5s;
+}
+
+#editUser button:hover {
+  padding-right: 24px;
+  padding-left: 8px;
+  background-color: rgb(80, 80, 80);
+}
+
+#editUser button:hover:after {
+  opacity: 1;
+  right: 10px;
 }

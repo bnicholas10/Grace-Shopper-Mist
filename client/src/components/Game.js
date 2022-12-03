@@ -1,6 +1,6 @@
 import { Route, Routes, useParams, Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { addToCart, fetchCart, fetchGameById } from "../api";
+import { addToCart, fetchCartandPurchased, fetchGameById } from "../api";
 import EditGame from "./EditGame";
 import "./css/Game.css";
 
@@ -27,8 +27,8 @@ const Game = ({ token, games, user, setCart, setGames, cart }) => {
         setError("");
       }, 2500);
     } else {
-      const cartItems = await fetchCart(token);
-      setCart(cartItems.data);
+      const result = await fetchCartandPurchased(token);
+      setCart(result.data.cartItems);
       navigate("/cart");
     }
   };
