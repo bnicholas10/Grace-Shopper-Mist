@@ -1,0 +1,121 @@
+#checkoutPage {
+  padding-top: 85px;
+  padding-bottom: 20px;
+  color: white;
+  font-family: "Bungee", cursive;
+  display: flex;
+}
+
+#checkoutHeader {
+  text-shadow: 0px 5px 8px gray;
+}
+
+#checkout {
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+}
+
+.checkoutForm {
+  width: 525px;
+  /* background-color: red; */
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  /* padding: 10px; */
+}
+
+#contactInfo {
+  margin-bottom: 35px;
+}
+
+.checkoutForm input {
+  background-color: transparent;
+  color: white;
+  outline: none;
+  border: none;
+  border-bottom: 2px solid silver;
+  margin-bottom: 10px;
+  margin-left: 35px;
+  width: 225px;
+  height: 40px;
+  padding: 5px;
+  font-family: "Syne Mono", monospace;
+  transition: 0.5s;
+}
+
+.checkoutForm input::placeholder {
+  letter-spacing: 4px;
+}
+
+.checkoutForm input:focus {
+  color: silver;
+  border-bottom: 2px solid cornflowerblue;
+}
+
+.checkoutForm input:focus::placeholder {
+  color: transparent;
+}
+
+#checkoutTotal {
+  margin-top: 25px;
+}
+
+#emptyCartMessage {
+  margin: auto;
+  text-shadow: 0px 5px 8px gray;
+}
+
+#checkoutConfirmationMessage {
+  width: 150px;
+  color: green;
+  position: absolute;
+  left: 100px;
+  top: 175px;
+  font-family: "Bungee", cursive;
+}
+
+#checkoutErrorMessage {
+  width: 150px;
+  color: red;
+  position: absolute;
+  left: 100px;
+  top: 350px;
+  font-family: "Bungee", cursive;
+}
+
+#clearFields {
+  border-radius: 4px;
+  background-color: rgb(21, 21, 21);
+  border: none;
+  color: #fff;
+  text-align: center;
+  font-size: 16px;
+  padding: 10px;
+  width: 150px;
+  height: 35px;
+  transition: all 0.5s;
+  cursor: pointer;
+  text-decoration: none;
+  box-shadow: 0 10px 20px -8px rgba(0, 0, 0, 0.7);
+  display: inline;
+}
+
+#clearFields {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+#clearFields:hover {
+  background-color: grey;
+}
+
+#clearFields:hover:after {
+  opacity: 1;
+  right: 10px;
+}

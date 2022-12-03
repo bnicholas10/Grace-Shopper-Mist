@@ -8,6 +8,8 @@ const {
   updateCart,
   clearCart,
   getCartItemById,
+  checkCart,
+  checkPurchased,
 } = require("../db/cart");
 
 const { JWT_SECRET } = process.env;
@@ -38,11 +40,28 @@ cartRouter.post("/", async (req, res, next) => {
   const { userId, gameId } = req.body;
   const input = { userId: userId, gameId: gameId, quantity: 1 };
   try {
-    const result = addToCart(input);
-    if (!result) {
-      res.send({ success: false, error: { message: "something went wrong" } });
+    const existsInCart = await checkCart({ userId: userId, gameId: gameId });
+    const purchased = await checkPurchased({ userId: userId, gameId: gameId });
+    if (existsInCart) {
+      res.send({
+        success: false,
+        error: { message: "This game is already in your cart" },
+      });
+    } else if (purchased) {
+      res.send({
+        success: false,
+        error: { message: "You already own this game" },
+      });
     } else {
-      res.send({ success: true });
+      const result = await addToCart(input);
+      if (!result) {
+        res.send({
+          success: false,
+          error: { message: "something went wrong" },
+        });
+      } else {
+        res.send({ success: true });
+      }
     }
   } catch (error) {
     next(error);
@@ -79,7 +98,15 @@ cartRouter.delete("/", async (req, res, next) => {
 });
 
 // Checkout
-cartRouter.post("/", async (req, res, next) => {});
-//change all cart items to purchased=true
+cartRouter.patch("/", async (req, res, next) => {
+  const user = req.user;
+  const { cartId } = req.body;
+  try {
+    const result = await updateCart({ id: cartId, purchased: true });
+    res.send({ success: true, data: { result } });
+  } catch (error) {
+    next(error);
+  }
+});
 
 module.exports = cartRouter;

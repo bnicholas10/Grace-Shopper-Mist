@@ -4,12 +4,13 @@ import { addToCart, fetchCart, fetchGameById } from "../api";
 import EditGame from "./EditGame";
 import "./css/Game.css";
 
-const Game = ({ token, games, user, setCart, setGames }) => {
+const Game = ({ token, games, user, setCart, setGames, cart }) => {
   const params = useParams();
   const [game, setGame] = useState([]);
   const navigate = useNavigate();
   const [clicked, setClicked] = useState(false);
   const [display, setDisplay] = useState(true);
+  const [error, setError] = useState("");
 
   const loadGame = async (gameId) => {
     const gameInfo = await fetchGameById(gameId);
@@ -20,8 +21,11 @@ const Game = ({ token, games, user, setCart, setGames }) => {
   const handleaddToCart = async (e) => {
     e.preventDefault();
     const result = await addToCart(game.id, user.id);
-    if (!result) {
-      console.log("something went wrong");
+    if (!result.success) {
+      setError(result.error.message);
+      setTimeout(() => {
+        setError("");
+      }, 2500);
     } else {
       const cartItems = await fetchCart(token);
       setCart(cartItems.data);
@@ -41,6 +45,7 @@ const Game = ({ token, games, user, setCart, setGames }) => {
 
   return (
     <div className="gameContainer">
+      <p id="gameError">{error}</p>
       {display === true ? (
         <div className="gameView" id="test">
           <div className="gameImage">
@@ -70,11 +75,15 @@ const Game = ({ token, games, user, setCart, setGames }) => {
               </div>
             </div>
           </div>
-          <button onClick={handleForm}>Edit Game</button>
-          <button>Delete Game</button>
-          <button className="addToCart" onClick={handleaddToCart}>
-            Add to Cart
-          </button>
+          {user && user.isAdmin && (
+            <button onClick={handleForm}>Edit Game</button>
+          )}
+          {user && user.isAdmin && <button>Delete Game</button>}
+          {user && (
+            <button className="addToCart" onClick={handleaddToCart}>
+              Add to Cart
+            </button>
+          )}
         </div>
       ) : null}
       {user && user.isAdmin === true && clicked === true ? (

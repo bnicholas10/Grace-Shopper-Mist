@@ -41,7 +41,11 @@ const Cart = (props) => {
 
   return (
     <div id="userCart">
-      {user ? <h1>{user.username}'s Cart</h1> : <h1>Cart</h1>}
+      {user ? (
+        <h1>{user.username}'s Cart</h1>
+      ) : (
+        <h1>Please log in to view cart</h1>
+      )}
       {cart.map((game, i) => {
         return (
           <div key={i} className="gameCard">
@@ -64,8 +68,14 @@ const Cart = (props) => {
           </div>
         );
       })}
-      {cart.length ? <p>Total: ${total}</p> : <></>}
-      {cart.length ? <button>Checkout</button> : <></>}
+      {cart.length ? <p id="checkoutTotal">Total: ${total}</p> : <></>}
+      {cart.length ? (
+        <Link className="checkoutButton" to={"/cart/checkout"}>
+          Checkout
+        </Link>
+      ) : (
+        <></>
+      )}
     </div>
   );
 };

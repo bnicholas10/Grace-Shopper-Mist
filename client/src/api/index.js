@@ -126,6 +126,25 @@ export const addToCart = async (gameId, userId) => {
   }
 };
 
+export const purchaseCart = async (token, cartId) => {
+  try {
+    const response = await fetch(`${BASE_URL}/cart`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        cartId,
+      }),
+    });
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 export const deleteFromCart = async (token, cartId) => {
   try {
     const response = await fetch(`${BASE_URL}/cart`, {

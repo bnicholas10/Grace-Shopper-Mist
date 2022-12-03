@@ -61,3 +61,12 @@ h3 {
   height: 40px;
   width: 140px;
 }
+
+#gameError {
+  width: 150px;
+  color: red;
+  position: absolute;
+  left: 50px;
+  top: 350px;
+  font-family: "Bungee", cursive;
+}

@@ -32,6 +32,40 @@ const getCartItemById = async (cartId) => {
   }
 };
 
+const checkCart = async ({ userId, gameId }) => {
+  try {
+    const {
+      rows: [result],
+    } = await client.query(
+      `
+      SELECT * FROM cart WHERE "userId" = $1 AND "gameId" = $2 AND purchased = false;
+    `,
+      [userId, gameId]
+    );
+    return result;
+  } catch (error) {
+    console.log("Error with checkCart");
+    throw error;
+  }
+};
+
+const checkPurchased = async ({ userId, gameId }) => {
+  try {
+    const {
+      rows: [result],
+    } = await client.query(
+      `
+      SELECT * FROM cart WHERE "userId" = $1 AND "gameId" = $2 AND purchased = true;
+    `,
+      [userId, gameId]
+    );
+    return result;
+  } catch (error) {
+    console.log("Error with checkCart");
+    throw error;
+  }
+};
+
 const addToCart = async ({ userId, gameId, quantity }) => {
   try {
     const {
@@ -64,15 +98,15 @@ const removeFromCart = async (id) => {
   }
 };
 
-const updateCart = async ({ id, quantity }) => {
+const updateCart = async ({ purchased, id }) => {
   try {
     const {
       rows: [result],
     } = await client.query(
       `
-        UPDATE cart SET quantity = $2 WHERE id = $1;
+        UPDATE cart SET purchased = $1 WHERE id = $2;
       `,
-      [id, quantity]
+      [purchased, id]
     );
     return result;
   } catch (error) {
@@ -103,4 +137,6 @@ module.exports = {
   updateCart,
   clearCart,
   getCartItemById,
+  checkCart,
+  checkPurchased,
 };

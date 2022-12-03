@@ -13,6 +13,7 @@ import Register from "./components/Register";
 import UserProfile from "./components/UserProfile";
 import AdminDash from "./components/AdminDash";
 import Cart from "./components/Cart";
+import Checkout from "./components/Checkout";
 
 const App = () => {
   const [user, setUser] = useState(null);
@@ -118,6 +119,7 @@ const App = () => {
               games={games}
               setGames={setGames}
               user={user}
+              cart={cart}
               setCart={setCart}
             />
           }
@@ -127,6 +129,10 @@ const App = () => {
           element={
             <Cart cart={cart} setCart={setCart} user={user} token={token} />
           }
+        />
+        <Route
+          path={"/cart/checkout"}
+          element={<Checkout cart={cart} setCart={setCart} token={token} />}
         />
         <Route
           path={"/editgame/:gameId/*"}
