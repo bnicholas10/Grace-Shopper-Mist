@@ -1,10 +1,10 @@
+import { Route, Routes } from "react-router-dom";
 import AdminDashNav from "./AdminDashNav";
-import "./css/AdminDash.css";
 import DataTable from "./DataTable";
-import React, { useEffect, useState } from "react";
+import "./css/AdminDash.css";
 
 const AdminDash = (props) => {
-  const { user, games, token } = props;
+  const { user, games, token, setGames } = props;
   return (
     <div id="adminDash">
       {user && user.isAdmin ? (
@@ -14,7 +14,12 @@ const AdminDash = (props) => {
             <AdminDashNav />
           </div>
           <div className="dataT">
-            <DataTable games={games} user={user} token={token} />
+            <DataTable
+              games={games}
+              user={user}
+              token={token}
+              setGames={setGames}
+            />
           </div>
         </div>
       ) : (

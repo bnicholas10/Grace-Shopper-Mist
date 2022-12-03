@@ -41,7 +41,7 @@ gamesRouter.get("/:gameId", async (req, res, next) => {
   }
 });
 
-gamesRouter.post("/", async (req, res, next) => {
+gamesRouter.post("/create", async (req, res, next) => {
   // verify user is admin
   const user = req.user;
   const { name, price, publisher, description, rating, category, image } =
@@ -137,7 +137,7 @@ gamesRouter.delete("/:gameId", async (req, res, next) => {
   const user = req.user;
   const { gameId } = req.params;
   try {
-    if (user.isAdmin) {
+    if (user.isAdmin === true) {
       const result = await deleteGame(gameId);
       if (!result) {
         res.send({

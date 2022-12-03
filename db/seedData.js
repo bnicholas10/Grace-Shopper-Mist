@@ -43,7 +43,8 @@ async function createTables() {
         description VARCHAR(1000) NOT NULL,
         rating VARCHAR(255) NOT NULL,
         category VARCHAR(255) NOT NULL,
-        image VARCHAR(2083) NOT NULL
+        image VARCHAR(2083) NOT NULL,
+        "isActive" BOOLEAN DEFAULT true
       );
 
       CREATE TABLE cart(

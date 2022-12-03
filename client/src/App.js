@@ -1,9 +1,10 @@
-import { useEffect, useState, Link } from "react";
+import { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import { fetchCart, fetchCartandPurchased, fetchGames, fetchUser } from "./api";
 // import "./index.css";
 import Games from "./components/Games";
 import EditGame from "./components/EditGame";
+import CreateGame from "./components/CreateGame";
 import Game from "./components/Game";
 import Home from "./components/Home";
 import Login from "./components/Login";
@@ -91,6 +92,7 @@ const App = () => {
               user={user}
               setUser={setUser}
               games={games}
+              setGames={setGames}
             />
           }
         />
@@ -158,6 +160,17 @@ const App = () => {
           path={"/editgame/:gameId/*"}
           element={
             <EditGame
+              token={token}
+              setToken={setToken}
+              user={user}
+              setGames={setGames}
+            />
+          }
+        />
+        <Route
+          path={"/creategame"}
+          element={
+            <CreateGame
               token={token}
               setToken={setToken}
               user={user}
