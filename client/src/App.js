@@ -1,4 +1,4 @@
-import { useEffect, useState, Link } from "react";
+import { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import { fetchCart, fetchGames, fetchUser } from "./api";
 // import "./index.css";
