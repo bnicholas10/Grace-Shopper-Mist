@@ -86,11 +86,14 @@ async function getUserById(userId) {
   try {
     const {
       rows: [user],
-    } = await client.query(`
+    } = await client.query(
+      `
       SELECT id, username, "isAdmin"
       FROM users
-      WHERE id=${userId}
-    `);
+      WHERE id=$1
+    `,
+      [userId]
+    );
 
     if (!user) {
       return null;
@@ -140,6 +143,26 @@ async function getUserByEmail(email) {
   }
 }
 
+async function getAllUsers() {
+  try {
+    const { rows } = await client.query(`
+      SELECT *
+      FROM users;
+    `);
+
+    const data = await Promise.all(
+      rows.map((user) => {
+        delete user.password;
+        return user;
+      })
+    );
+
+    return data;
+  } catch (error) {
+    throw error;
+  }
+}
+
 module.exports = {
   createUser,
   getUser,
@@ -147,4 +170,5 @@ module.exports = {
   getUserById,
   getUserByUsername,
   getUserByEmail,
+  getAllUsers,
 };

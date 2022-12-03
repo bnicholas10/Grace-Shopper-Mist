@@ -18,9 +18,23 @@ const { JWT_SECRET } = process.env;
 
 // GET /api/users
 usersRouter.get("/", async (req, res) => {
-  const users = await getAllUsers();
-  res.send({ success: true, data: { users } });
-  res.send("hello testing getallusers route");
+  const user = req.user;
+  try {
+    if (user.isAdmin === true) {
+      const users = await getAllUsers();
+      res.send({ success: true, data: { users } });
+    } else {
+      res.send({
+        success: false,
+        error: {
+          name: "Auth Error",
+          message: "User must be an Admin for this action",
+        },
+      });
+    }
+  } catch (error) {
+    throw error;
+  }
 });
 
 // POST /api/users/login
