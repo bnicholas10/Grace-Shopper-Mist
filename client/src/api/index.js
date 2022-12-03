@@ -216,3 +216,39 @@ export const editGameFunc = async (
     throw error;
   }
 };
+
+export const createGameFunc = async (
+  name,
+  price,
+  publisher,
+  description,
+  rating,
+  category,
+  image,
+  user,
+  token
+) => {
+  try {
+    const response = await fetch(`${BASE_URL}/games/create`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        name,
+        price,
+        publisher,
+        description,
+        rating,
+        category,
+        image,
+      }),
+    });
+    const result = await response.json();
+    console.log(result);
+    return result;
+  } catch (error) {
+    throw error;
+  }
+};

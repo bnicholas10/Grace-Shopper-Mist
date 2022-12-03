@@ -56,22 +56,24 @@ const Games = ({ token, games }) => {
         <div className="gamesList">
           <h1>ALL GAMES</h1>
           {test.map((game) => {
-            return (
-              <div className="singleGame" key={game.id}>
-                <a href={`/games/${game.id}`}>
-                  <div className="content">
-                    <div className="contentLeft">
-                      <img src={game.image} alt="test" />
-                      <h5>{game.name}</h5>
-                    </div>
+            if (game.isActive === true) {
+              return (
+                <div className="singleGame" key={game.id}>
+                  <a href={`/games/${game.id}`}>
+                    <div className="content">
+                      <div className="contentLeft">
+                        <img src={game.image} alt="test" />
+                        <h5>{game.name}</h5>
+                      </div>
 
-                    <div className="contentRight">
-                      <h5>${game.price}</h5>
+                      <div className="contentRight">
+                        <h5>${game.price}</h5>
+                      </div>
                     </div>
-                  </div>
-                </a>
-              </div>
-            );
+                  </a>
+                </div>
+              );
+            }
           })}
         </div>
         <div className="side">

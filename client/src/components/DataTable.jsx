@@ -2,8 +2,25 @@ import "./css/dataTable.scss";
 import { DataGrid } from "@mui/x-data-grid";
 import * as React from "react";
 import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { deleteGameFunc, fetchGames } from "../api";
 
-const DataTable = ({ games, user, token }) => {
+const DataTable = ({ games, user, token, setGames }) => {
+  // const [gameId, setGameId] = useState();
+  const handleDelete = async (gameId) => {
+    // // console.log(token);
+    console.log(gameId);
+    const deletedGame = await deleteGameFunc(gameId, token, user);
+    console.log(deletedGame);
+    if (!deletedGame) {
+      console.log("something went wrong");
+    } else {
+      const allGames = await fetchGames();
+      setGames(allGames.data);
+      console.log("DELETED");
+    }
+  };
+
   const actionColumn = [
     {
       field: "action",
@@ -18,6 +35,16 @@ const DataTable = ({ games, user, token }) => {
             >
               <div className="viewButton">View</div>
             </Link>
+            <div
+              className="deleteButton"
+              onClick={(event) => {
+                event.preventDefault();
+                // setGameId(params.row.id);
+                handleDelete(params.row.id);
+              }}
+            >
+              Delete
+            </div>
           </div>
         );
       },
@@ -51,7 +78,7 @@ const DataTable = ({ games, user, token }) => {
     <div className="dataTable">
       <div className="dataTableTitle">
         Game Management
-        <Link to="/users/new" className="link">
+        <Link to="/creategame" className="link">
           Add New Game
         </Link>
       </div>

@@ -1,18 +1,26 @@
 import { Route, Routes } from "react-router-dom";
 import AdminDashNav from "./AdminDashNav";
+import DataTable from "./DataTable";
 import "./css/AdminDash.css";
 
 const AdminDash = (props) => {
-  const { user } = props;
+  const { user, games, token, setGames } = props;
   return (
     <div id="adminDash">
       {user && user.isAdmin ? (
-        <div>
+        <div className="adminDashContent">
           <h1>Admin Dashboard</h1>
-          <AdminDashNav />
-          <Routes>
-            <Route path={"users"} />
-          </Routes>
+          <div className="sideNav">
+            <AdminDashNav />
+          </div>
+          <div className="dataT">
+            <DataTable
+              games={games}
+              user={user}
+              token={token}
+              setGames={setGames}
+            />
+          </div>
         </div>
       ) : (
         <div className="authError">

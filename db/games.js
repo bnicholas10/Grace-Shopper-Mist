@@ -169,10 +169,13 @@ async function deleteGame(gameId) {
   try {
     const { rows: result } = await client.query(
       `
-      DELETE FROM games WHERE id = $1 RETURNING *;
+       UPDATE games 
+       WHERE id =$1
+       SET "isActive" = $2 RETURNING *;
     `,
-      [gameId]
+      [gameId, isActive]
     );
+    console.log(result, "DB");
     return result;
   } catch (error) {
     throw error;
