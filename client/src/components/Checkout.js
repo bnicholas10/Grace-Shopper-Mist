@@ -34,12 +34,37 @@ const Checkout = (props) => {
     total = total + +game.price;
   }
 
-  if (
-    Object.values(contactInfo).every(Boolean) &&
-    Object.values(billingInfo).every(Boolean)
-  ) {
-    console.log("All info filled out");
-  }
+  //   if (
+  //     Object.values(contactInfo).every((item) => item.length > 2) &&
+  //     Object.values(billingInfo).every((item) => item.length > 2)
+  //   ) {
+  //     console.log("Works as intended");
+  //   } else {
+  //     console.log("Something is missing");
+  //   }
+
+  const handleFieldClear = () => {
+    setContactInfo({
+      firstName: "",
+      lastName: "",
+      address: "",
+      city: "",
+      state: "",
+      zipCode: "",
+      email: "",
+      phoneNumber: "",
+    });
+    setBillingInfo({
+      cardNumber: "",
+      cardholderName: "",
+      expirationDate: "",
+      cvvCode: "",
+      address: "",
+      city: "",
+      state: "",
+      zipCode: "",
+    });
+  };
 
   const handleCheckOut = async (e) => {
     e.preventDefault();
@@ -75,11 +100,15 @@ const Checkout = (props) => {
           <p id="checkoutConfirmationMessage">{message}</p>
           <p id="checkoutErrorMessage">{error}</p>
           <h1 id="checkoutHeader">Checkout</h1>
+          <button onClick={handleFieldClear} id="clearFields">
+            Clear All Fields
+          </button>
           <form className="checkoutForm" onSubmit={handleCheckOut}>
             <h3>Contact Info</h3>
             <div id="contactInfo">
               <input
                 type={"input"}
+                value={contactInfo.firstName}
                 onChange={(event) => {
                   setContactInfo({
                     ...contactInfo,
@@ -90,6 +119,7 @@ const Checkout = (props) => {
               />
               <input
                 type={"input"}
+                value={contactInfo.lastName}
                 onChange={(event) => {
                   setContactInfo({
                     ...contactInfo,
@@ -100,6 +130,7 @@ const Checkout = (props) => {
               />
               <input
                 type={"input"}
+                value={contactInfo.address}
                 onChange={(event) => {
                   setContactInfo({
                     ...contactInfo,
@@ -110,6 +141,7 @@ const Checkout = (props) => {
               />
               <input
                 type={"input"}
+                value={contactInfo.city}
                 onChange={(event) => {
                   setContactInfo({
                     ...contactInfo,
@@ -120,6 +152,7 @@ const Checkout = (props) => {
               />
               <input
                 type={"input"}
+                value={contactInfo.state}
                 onChange={(event) => {
                   setContactInfo({
                     ...contactInfo,
@@ -130,6 +163,7 @@ const Checkout = (props) => {
               />
               <input
                 type={"input"}
+                value={contactInfo.zipCode}
                 onChange={(event) => {
                   setContactInfo({
                     ...contactInfo,
@@ -140,6 +174,7 @@ const Checkout = (props) => {
               />
               <input
                 type={"input"}
+                value={contactInfo.email}
                 onChange={(event) => {
                   setContactInfo({
                     ...contactInfo,
@@ -150,6 +185,7 @@ const Checkout = (props) => {
               />
               <input
                 type={"input"}
+                value={contactInfo.phoneNumber}
                 onChange={(event) => {
                   setContactInfo({
                     ...contactInfo,
@@ -164,6 +200,7 @@ const Checkout = (props) => {
             <div id="billingInfo">
               <input
                 type={"input"}
+                value={billingInfo.cardNumber}
                 onChange={(event) => {
                   setBillingInfo({
                     ...billingInfo,
@@ -174,6 +211,7 @@ const Checkout = (props) => {
               />
               <input
                 type={"input"}
+                value={billingInfo.cardholderName}
                 onChange={(event) => {
                   setBillingInfo({
                     ...billingInfo,
@@ -184,6 +222,7 @@ const Checkout = (props) => {
               />
               <input
                 type={"input"}
+                value={billingInfo.expirationDate}
                 onChange={(event) => {
                   setBillingInfo({
                     ...billingInfo,
@@ -194,6 +233,7 @@ const Checkout = (props) => {
               />
               <input
                 type={"input"}
+                value={billingInfo.cvvCode}
                 onChange={(event) => {
                   setBillingInfo({
                     ...billingInfo,
@@ -204,6 +244,7 @@ const Checkout = (props) => {
               />
               <input
                 type={"input"}
+                value={billingInfo.address}
                 onChange={(event) => {
                   setBillingInfo({
                     ...billingInfo,
@@ -214,6 +255,7 @@ const Checkout = (props) => {
               />
               <input
                 type={"input"}
+                value={billingInfo.city}
                 onChange={(event) => {
                   setBillingInfo({
                     ...billingInfo,
@@ -224,6 +266,7 @@ const Checkout = (props) => {
               />
               <input
                 type={"input"}
+                value={billingInfo.state}
                 onChange={(event) => {
                   setBillingInfo({
                     ...billingInfo,
@@ -234,6 +277,7 @@ const Checkout = (props) => {
               />
               <input
                 type={"input"}
+                value={billingInfo.zipCode}
                 onChange={(event) => {
                   setBillingInfo({
                     ...billingInfo,

@@ -86,3 +86,36 @@
   top: 350px;
   font-family: "Bungee", cursive;
 }
+
+#clearFields {
+  border-radius: 4px;
+  background-color: rgb(21, 21, 21);
+  border: none;
+  color: #fff;
+  text-align: center;
+  font-size: 16px;
+  padding: 10px;
+  width: 150px;
+  height: 35px;
+  transition: all 0.5s;
+  cursor: pointer;
+  text-decoration: none;
+  box-shadow: 0 10px 20px -8px rgba(0, 0, 0, 0.7);
+  display: inline;
+}
+
+#clearFields {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+#clearFields:hover {
+  background-color: grey;
+}
+
+#clearFields:hover:after {
+  opacity: 1;
+  right: 10px;
+}
