@@ -165,18 +165,21 @@ async function updateGame({
 //   }
 // }
 
-async function deleteGame(gameId) {
+async function deleteGame(gameId, isActive) {
   try {
-    const { rows: result } = await client.query(
+    const {
+      rows: [game],
+    } = await client.query(
       `
        UPDATE games 
-       WHERE id =$1
-       SET "isActive" = $2 RETURNING *;
+       SET "isActive"= $2
+       WHERE id=$1
+       RETURNING *;
     `,
       [gameId, isActive]
     );
-    console.log(result, "DB");
-    return result;
+    console.log(game, "DB");
+    return game;
   } catch (error) {
     throw error;
   }

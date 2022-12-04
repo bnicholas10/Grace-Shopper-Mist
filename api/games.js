@@ -133,12 +133,14 @@ gamesRouter.patch("/:gameId", async (req, res, next) => {
   }
 });
 
-gamesRouter.delete("/:gameId", async (req, res, next) => {
+// DISABLE GAME INSTEAD OF DELETING IT
+gamesRouter.patch("/delete/:gameId", async (req, res, next) => {
   const user = req.user;
   const { gameId } = req.params;
+  const { isActive } = req.body;
   try {
     if (user.isAdmin === true) {
-      const result = await deleteGame(gameId);
+      const result = await deleteGame(gameId, isActive);
       if (!result) {
         res.send({
           success: false,

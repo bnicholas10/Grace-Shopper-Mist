@@ -12,9 +12,8 @@ const Login = (props) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // console.log(username, password);
     const result = await loginUser(username, password);
-    console.log("RESULT: ", result);
+    // console.log("RESULT: ", result);
     if (!result || !result.success) {
       setError(result.error.message);
       setTimeout(() => {

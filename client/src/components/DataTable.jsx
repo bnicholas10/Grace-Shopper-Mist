@@ -6,18 +6,18 @@ import { useState, useEffect } from "react";
 import { deleteGameFunc, fetchGames } from "../api";
 
 const DataTable = ({ games, user, token, setGames }) => {
-  // const [gameId, setGameId] = useState();
   const handleDelete = async (gameId) => {
     // // console.log(token);
-    console.log(gameId);
-    const deletedGame = await deleteGameFunc(gameId, token, user);
+    // console.log(gameId);
+    const isActive = false;
+    const deletedGame = await deleteGameFunc(gameId, token, isActive, user);
     console.log(deletedGame);
     if (!deletedGame) {
       console.log("something went wrong");
     } else {
       const allGames = await fetchGames();
       setGames(allGames.data);
-      console.log("DELETED");
+      // console.log("DELETED");
     }
   };
 

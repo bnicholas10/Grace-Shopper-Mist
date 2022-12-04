@@ -74,6 +74,22 @@ export const updateUser = async (token, fields) => {
   }
 };
 
+export const fetchAllUsers = async (token, user) => {
+  try {
+    const response = await fetch(`${BASE_URL}/users`, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    const result = await response.json();
+
+    return result;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 export const fetchGames = async () => {
   try {
     const response = await fetch(`${BASE_URL}/games`, {
@@ -182,14 +198,17 @@ export const deleteFromCart = async (token, cartId) => {
   }
 };
 
-export const deleteGameFunc = async (gameId, token) => {
+export const deleteGameFunc = async (gameId, token, isActive) => {
   try {
-    const response = await fetch(`${BASE_URL}/games/${gameId}`, {
-      method: "DELETE",
+    const response = await fetch(`${BASE_URL}/games/delete/${gameId}`, {
+      method: "PATCH",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
+      body: JSON.stringify({
+        isActive,
+      }),
     });
     const result = await response.json();
     return result;

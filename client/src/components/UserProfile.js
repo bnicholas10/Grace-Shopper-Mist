@@ -34,7 +34,7 @@ const UserProfile = (props) => {
     }
 
     const result = await updateUser(token, fields);
-    console.log("EDIT RESULT: ", result);
+    // console.log("EDIT RESULT: ", result);
     if (!result || !result.success) {
       setError(result.message);
       setTimeout(() => {

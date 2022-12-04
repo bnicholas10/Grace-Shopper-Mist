@@ -58,7 +58,7 @@ const EditGame = ({ user, token, game, setGames }) => {
       {user && user.isAdmin ? (
         <div className="gameView" id="test">
           <form onSubmit={handleEdit}>
-            <div className="gameImage">
+            <div className="newImage">
               <h1>New Image</h1>
               <input
                 type={"text"}
@@ -71,7 +71,7 @@ const EditGame = ({ user, token, game, setGames }) => {
               />
             </div>
 
-            <div className="gameInfo">
+            <div className="gameInfoE">
               <h1>Name</h1>
               <label>{game.name}</label>
               <input
@@ -96,7 +96,7 @@ const EditGame = ({ user, token, game, setGames }) => {
               />
 
               <div className="gameInfoMore">
-                <div className="gameInfoLeft">
+                {/* <div className="gameInfoLeft">
                   <h3>Publisher: </h3>
                   <br />
                   <h3>Rating:</h3>
@@ -104,7 +104,7 @@ const EditGame = ({ user, token, game, setGames }) => {
                   <h3>Category: </h3>
                   <br />
                   <h3>Price:</h3>
-                </div>
+                </div> */}
 
                 <div className="gameInfoRight">
                   <h3>{game.publisher}</h3>
@@ -150,7 +150,11 @@ const EditGame = ({ user, token, game, setGames }) => {
                 </div>
               </div>
             </div>
-            <button type="submit">Submit</button>
+            <div className="buttonSubmitEdit">
+              <button className="submitEdit" type="submit">
+                Submit
+              </button>
+            </div>
           </form>
         </div>
       ) : (

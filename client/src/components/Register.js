@@ -16,7 +16,7 @@ const Register = (props) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const result = await registerUser(name, email, username, password);
-    console.log("RESULT: ", result);
+    // console.log("RESULT: ", result);
 
     if (!result.token) {
       setError(result.message);

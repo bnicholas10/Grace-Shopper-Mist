@@ -20,12 +20,37 @@
   /* background-color: red; */
 }
 
-.sideNav {
+.managementType {
+  background-color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  justify-content: space-evenly;
   height: 100px;
+}
+
+.managementType button {
+  height: 40px;
+  background-color: black;
+  border-style: none;
+  font-size: x-large;
+  color: white;
+  margin-right: 30px;
+  text-decoration: none;
+  letter-spacing: 3px;
+  transition: 0.25s;
+}
+
+.managementType button:hover {
+  color: cornflowerblue;
+  letter-spacing: 5px;
+  text-shadow: 0px 4px 4px silver;
 }
 
 .dataT {
   height: 90%;
   width: 100%;
   background-color: white;
+  display: flex;
+  justify-content: center;
 }

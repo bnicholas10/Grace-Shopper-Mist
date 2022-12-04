@@ -75,15 +75,18 @@ const Game = ({ token, games, user, setCart, setGames, cart }) => {
               </div>
             </div>
           </div>
-          {user && user.isAdmin && (
-            <button onClick={handleForm}>Edit Game</button>
-          )}
-          {user && user.isAdmin && <button>Delete Game</button>}
-          {user && (
-            <button className="addToCart" onClick={handleaddToCart}>
-              Add to Cart
-            </button>
-          )}
+          <div className="gameButtons">
+            {user && user.isAdmin && (
+              <button className="editGameButton" onClick={handleForm}>
+                Edit Game
+              </button>
+            )}
+            {user && (
+              <button className="addToCart" onClick={handleaddToCart}>
+                Add to Cart
+              </button>
+            )}
+          </div>
         </div>
       ) : null}
       {user && user.isAdmin === true && clicked === true ? (

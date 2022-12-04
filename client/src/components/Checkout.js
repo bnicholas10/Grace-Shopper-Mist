@@ -65,8 +65,9 @@ const Checkout = (props) => {
     ) {
       for (let game of cart) {
         const result = await purchaseCart(token, game.cartId);
-        console.log("result: ", result);
+        // console.log("result: ", result);
       }
+      window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
       setMessage("Thank you for your order");
       setTimeout(() => {
         navigate("/profile");

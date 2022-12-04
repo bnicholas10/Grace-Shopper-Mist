@@ -1,6 +1,11 @@
 import { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
-import { fetchCart, fetchCartandPurchased, fetchGames, fetchUser } from "./api";
+import {
+  fetchCartandPurchased,
+  fetchGames,
+  fetchUser,
+  fetchAllUsers,
+} from "./api";
 // import "./index.css";
 import Games from "./components/Games";
 import EditGame from "./components/EditGame";
@@ -22,11 +27,12 @@ const App = () => {
   const [games, setGames] = useState([]);
   const [cart, setCart] = useState([]);
   const [purchased, setPurchased] = useState([]);
+  const [allUsers, setAllUsers] = useState([]);
 
   const checkToken = () => {
     if (token === "" && localStorage.getItem("token")) {
+      console.log("fetched token from local");
       setToken(localStorage.getItem("token"));
-      console.log(`fetched token from local`);
     }
   };
   checkToken();
@@ -37,6 +43,17 @@ const App = () => {
       setUser(userInfo.user);
     } else {
       setUser(null);
+    }
+  };
+
+  const handleFetchUsers = async (token) => {
+    if (!token) {
+      return;
+    }
+    const result = await fetchAllUsers(token, user);
+    // console.log(result);
+    if (result.success) {
+      setAllUsers(result.data.users);
     }
   };
 
@@ -56,6 +73,7 @@ const App = () => {
 
   useEffect(() => {
     handleFetchUser(token);
+    handleFetchUsers(token, user);
     handleFetchGames();
     handleFetchCartandPurchased(token);
   }, [token]);
@@ -91,6 +109,8 @@ const App = () => {
               setUser={setUser}
               games={games}
               setGames={setGames}
+              allUsers={allUsers}
+              setAllUsers={setAllUsers}
             />
           }
         />
