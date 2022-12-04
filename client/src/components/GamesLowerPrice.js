@@ -1,6 +1,6 @@
 //admin can add games
 import { useState } from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Link, Route, Switch } from "react-router-dom";
 import "./css/gamesLowerPrice.css";
 
 const GamesLowerPrice = ({ games }) => {
@@ -9,24 +9,16 @@ const GamesLowerPrice = ({ games }) => {
 
   return (
     <div className="lowerPriced">
-      <h1>GAMES UNDER $40.00</h1>
+      <h1 id="lowerGamesTitle">GAMES UNDER $40.00</h1>
       <div className="lowerPricedContainer">
         {filteredGames.map((game) => {
           return (
-            <div className="singleGameLower" key={game.id}>
-              <a href={`/games/${game.id}`}>
-                <div className="contentLower">
-                  <div className="contentLeftLower">
-                    <img src={game.image} alt="test Image" id="smallerImg" />
-                    <h5>{game.name}</h5>
-                    {/* <h5>{game.category}</h5> */}
-                  </div>
-
-                  <div className="contentRightLower">
-                    <h5>${game.price}</h5>
-                  </div>
-                </div>
-              </a>
+            <div className="lowerGamesCard" key={game.id}>
+              <img src={game.image} alt="test Image" />
+              <div className="lowerGameInfo">
+                <Link to={`/games/${game.id}`}>{game.name}</Link>
+                <h5>${game.price}</h5>
+              </div>
             </div>
           );
         })}

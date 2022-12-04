@@ -29,25 +29,19 @@ const Games = ({ token, games }) => {
 
   return (
     <div className="gamesContainer">
-      <h1>Games</h1>
-
-      <div className="navbar">
-        <div className="navbarSearch">
+      <div id="gamesPageHeading">
+        <h1 id="gamesPageTitle">Games</h1>
+        <div className="navbar">
           <form onSubmit={handleSearch}>
-            <fieldset>
-              <label id="filter">Search </label>
-              <input
-                id="filterInput"
-                type="text"
-                placeholder="Type here to search"
-                value={searchTerm}
-                onChange={(event) => {
-                  setSearchTerm(event.target.value);
-
-                  // console.log(event.target.value);
-                }}
-              />
-            </fieldset>
+            <input
+              id="filterInput"
+              type="text"
+              placeholder="Search Games"
+              value={searchTerm}
+              onChange={(event) => {
+                setSearchTerm(event.target.value);
+              }}
+            />
           </form>
         </div>
       </div>
@@ -58,19 +52,15 @@ const Games = ({ token, games }) => {
           {test.map((game) => {
             if (game.isActive === true) {
               return (
-                <div className="singleGame" key={game.id}>
-                  <a href={`/games/${game.id}`}>
-                    <div className="content">
-                      <div className="contentLeft">
-                        <img src={game.image} alt="test" />
-                        <h5>{game.name}</h5>
-                      </div>
-
-                      <div className="contentRight">
-                        <h5>${game.price}</h5>
-                      </div>
-                    </div>
-                  </a>
+                <div className="gamesGameCard" key={game.id}>
+                  <img src={game.image} alt="Image" />
+                  <div id="allGamesGameInfo">
+                    <Link to={`/games/${game.id}`}>{game.name}</Link>
+                    <p>Publisher: {game.publisher}</p>
+                    <p>Rating: {game.rating}</p>
+                    <p>Genre: {game.category}</p>
+                    <p>${game.price}</p>
+                  </div>
                 </div>
               );
             }

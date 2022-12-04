@@ -8,6 +8,7 @@ const {
   getUserById,
   getUser,
   getUserByEmail,
+  updateUser,
 } = require("../db/users");
 
 const { JWT_SECRET } = process.env;
@@ -64,6 +65,34 @@ usersRouter.patch("/me", requireUser, async (req, res, next) => {
   const user = req.user;
   const { email, password, name } = req.body;
   const fields = {};
+  const queriedUserByEmail = await getUserByEmail(email);
+
+  if (
+    email &&
+    !email.includes(("@" && ".com") || ("@" && ".edu") || ("@" && ".gov"))
+  ) {
+    res.send({
+      name: "UserCreationError",
+      message: "Please enter a valid email",
+    });
+    return;
+  }
+
+  if (queriedUserByEmail) {
+    res.send({
+      name: "Email in Use",
+      message: "That email is already registered",
+    });
+    return;
+  }
+
+  if (password && password.length < 8) {
+    res.send({
+      name: "PasswordLengthError",
+      message: "Password too short! Must be 8 characters or longer.",
+    });
+    return;
+  }
 
   try {
     if (email) {
@@ -74,6 +103,14 @@ usersRouter.patch("/me", requireUser, async (req, res, next) => {
     }
     if (name) {
       fields.name = name;
+    }
+
+    const result = await updateUser(user.id, fields);
+
+    if (!result) {
+      res.send({ success: false, error: { message: "Something went wrong" } });
+    } else {
+      res.send({ success: true, data: result });
     }
   } catch (error) {
     next(error);

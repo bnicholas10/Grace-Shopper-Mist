@@ -50,7 +50,6 @@ const App = () => {
       return;
     }
     const result = await fetchCartandPurchased(token);
-    console.log("fetchCartandPurchased: ", result.data);
     setCart(result.data.cartItems);
     setPurchased(result.data.purchasedItems);
   };
@@ -59,7 +58,6 @@ const App = () => {
     handleFetchUser(token);
     handleFetchGames();
     handleFetchCartandPurchased(token);
-    console.log(purchased, cart);
   }, [token]);
 
   return (

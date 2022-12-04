@@ -9,8 +9,10 @@ const UserProfile = (props) => {
   const [updatedName, setUpdatedName] = useState("");
   const [updatedEmail, setUpdatedEmail] = useState("");
   const [updatedPassword, setUpdatedPassword] = useState("");
+  const [success, setSuccess] = useState("");
+  const [error, setError] = useState("");
 
-  const fields = {};
+  let fields = {};
   if (updatedName) {
     fields.name = updatedName;
   }
@@ -21,13 +23,33 @@ const UserProfile = (props) => {
     fields.password = updatedPassword;
   }
 
-  const handleSelfEdit = async (token, fields) => {
+  const handleSelfEdit = async (e) => {
+    e.preventDefault();
+    if (!updatedEmail && !updatedName && !updatedPassword) {
+      setError("Please enter info to update");
+      setTimeout(() => {
+        setError("");
+      }, 2000);
+      return;
+    }
+
     const result = await updateUser(token, fields);
     console.log("EDIT RESULT: ", result);
     if (!result || !result.success) {
-      console.log("Something went wrong");
+      setError(result.message);
+      setTimeout(() => {
+        setError("");
+      }, 2000);
     } else {
-      console.log("update worked");
+      setSuccess("User Updated");
+      const userInfo = await fetchUser(token);
+      setUser(userInfo.user);
+      setUpdatedName("");
+      setUpdatedEmail("");
+      setUpdatedPassword("");
+      setTimeout(() => {
+        setSuccess("");
+      }, 2000);
     }
   };
 
@@ -82,6 +104,8 @@ const UserProfile = (props) => {
                   value={updatedPassword}
                 />
                 <button>Submit</button>
+                <p className="success">{success}</p>
+                <p className="error">{error}</p>
               </form>
             </div>
           </div>

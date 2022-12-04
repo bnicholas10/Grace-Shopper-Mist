@@ -1,40 +1,59 @@
 .lowerPriced h1 {
-  margin-bottom: 10px;
+  margin-bottom: 20px;
+  transition: 0.25s;
 }
 
-.contentLower {
-  height: 65px;
-  width: 430px;
-
-  background-color: rgb(22, 21, 21);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.lowerPriced h1:hover {
+  text-shadow: 0px 5px 6px cornflowerblue;
 }
 
-.contentLeftLower {
-  margin-left: 10px;
+.lowerGamesCard {
+  /* background-color: red; */
   display: flex;
   flex-direction: row;
+  justify-content: space-around;
+  box-shadow: 0px 0px 10px 3px silver;
+  width: 330px;
+  padding: 20px;
+  margin-bottom: 15px;
+  border-radius: 10px;
+  transition: 0.25s;
+}
+
+.lowerGamesCard:hover {
+  box-shadow: 0px 0px 10px 3px cornflowerblue;
+  /* box-shadow: 0px 0px 10px 3px rgb(255, 0, 53); */
+}
+
+.lowerGamesCard img {
+  width: 100px;
+  height: 100px;
+  /* scale: 1.2; */
+}
+
+.lowerGameInfo {
+  display: flex;
   align-items: center;
+  flex-direction: column;
+  text-align: center;
+  /* background-color: red; */
+  width: 150px;
+  font-family: "Syne Mono", monospace;
+  justify-content: space-around;
 }
 
-.contentLeftLower h4 {
-  font-weight: 400;
-  font-size: x-small;
+.lowerGameInfo a {
+  color: white;
+  /* margin: auto; */
+  text-decoration: none;
+  transition: 0.25s;
 }
 
-.contentRightLower {
-  margin-right: 20px;
+.lowerGameInfo a:hover {
+  color: rgb(255, 0, 53);
+  /* letter-spacing: 1px; */
 }
 
-.contentLeftLower h4,
-h2 {
-  background-color: rgb(22, 21, 21);
-}
-
-#smallerImg {
-  width: 75px;
-  height: 35px;
-  margin-right: 10px;
+#lowerGamesTitle {
+  float: right;
 }

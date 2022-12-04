@@ -51,36 +51,33 @@ async function getUser({ username, password }) {
   }
 }
 
-async function updateUser(id, fields = {}) {
-  const setString = Object.keys(fields)
-    .map((key, index) => `"${key}"=$${index + 1}`)
-    .join(", ");
+// async function updateUser(id, fields = {}) {
+//   const setString = Object.keys(fields)
+//     .map((key, index) => `"${key}"=$${index + 1}`)
+//     .join(", ");
 
-  if (setString.length === 0) {
-    return;
-  }
+//   if (setString.length === 0) {
+//     return;
+//   }
 
-  try {
-    const {
-      rows: [user],
-    } = await client.query(
-      `
-      UPDATE users
-      SET ${setString}
-      WHERE id=${id}
-      RETURNING *;
-    `,
-      Object.values(fields)
-    );
+//   try {
+//     const {
+//       rows: [user],
+//     } = await client.query(
+//       `
+//       UPDATE users
+//       SET ${setString}
+//       WHERE id=${id}
+//       RETURNING *;
+//     `,
+//       Object.values(fields)
+//     );
 
-    // if not an admin then they can't change themselves into admin
-    // option would not be displayed for users anyways
-
-    return user;
-  } catch (error) {
-    throw error;
-  }
-}
+//     return user;
+//   } catch (error) {
+//     throw error;
+//   }
+// }
 
 async function getUserById(userId) {
   try {
@@ -141,10 +138,15 @@ async function getUserByEmail(email) {
 }
 
 async function updateUser(id, fields) {
+  if (fields.password) {
+    const SALT_COUNT = 10;
+    const hashedPassword = await bcrypt.hash(fields.password, SALT_COUNT);
+    fields.password = hashedPassword;
+  }
   try {
     for (let key in fields) {
       await client.query(`
-      UPDATE users SET ${key} = ${fields[key]} WHERE id = ${id};
+      UPDATE users SET ${key} = '${fields[key]}' WHERE id = ${id};
       `);
     }
 
