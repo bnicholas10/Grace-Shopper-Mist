@@ -69,7 +69,11 @@ const UserProfile = (props) => {
           <h1>{user.username}'s Profile</h1>
           <div id="contentParent">
             <div id="purchases" className="profileContent">
-              <h1>Purchased Games</h1>
+              {purchased.length ? (
+                <h1>Purchased Games</h1>
+              ) : (
+                <h1>You don't own any games yet</h1>
+              )}
               {purchased.map((game, i) => {
                 return (
                   <div key={i} className="purchasedGameCard">
