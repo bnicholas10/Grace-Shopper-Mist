@@ -50,6 +50,7 @@ const App = () => {
     if (!token) {
       return;
     }
+
     const result = await fetchAllUsers(token, user);
     // console.log(result);
     if (result.success) {

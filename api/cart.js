@@ -6,7 +6,6 @@ const {
   addToCart,
   removeFromCart,
   updateCart,
-  clearCart,
   getCartItemById,
   checkCart,
   checkPurchased,
@@ -70,7 +69,7 @@ cartRouter.post("/", async (req, res, next) => {
   }
 });
 
-// Clear Cart
+// Delete from cart
 cartRouter.delete("/", async (req, res, next) => {
   const user = req.user;
   const { cartId } = req.body;
