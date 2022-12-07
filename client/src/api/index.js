@@ -1,4 +1,5 @@
-export const BASE_URL = "http://localhost:4000/api";
+// export const BASE_URL = "http://localhost:4000/api";
+export const BASE_URL = "https://graceshoppermist.onrender.com/api";
 
 export const loginUser = async (username, password) => {
   try {
