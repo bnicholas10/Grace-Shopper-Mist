@@ -12,15 +12,17 @@ const GamesLowerPrice = ({ games }) => {
       <h1 id="lowerGamesTitle">GAMES UNDER $40.00</h1>
       <div className="lowerPricedContainer">
         {filteredGames.map((game) => {
-          return (
-            <div className="lowerGamesCard" key={game.id}>
-              <img src={game.image} alt="test Image" />
-              <div className="lowerGameInfo">
-                <Link to={`/games/${game.id}`}>{game.name}</Link>
-                <h5>${game.price}</h5>
+          if (game.isActive === true) {
+            return (
+              <div className="lowerGamesCard" key={game.id}>
+                <img src={game.image} alt="test Image" />
+                <div className="lowerGameInfo">
+                  <Link to={`/games/${game.id}`}>{game.name}</Link>
+                  <h5>${game.price}</h5>
+                </div>
               </div>
-            </div>
-          );
+            );
+          }
         })}
       </div>
     </div>
